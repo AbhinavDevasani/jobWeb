@@ -3,14 +3,16 @@ import axios from 'axios'
 import { useNavigate } from 'react-router'
 
 function JobList() {
-  const navigate = useNavigate()
-   const [jobList, setJobList] = useState([])
+    const navigate = useNavigate()
+    const [jobList, setJobList] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
     const [search, setSearch] = useState("")   // search state
-
+    const [loading, setLoading] = useState(false)  // loader state
+    
   // Fetch jobs whenever currentPage or search changes
   useEffect(() => {
+    setLoading(true)
     const getData = async () => {
       try {
         const response = await axios.get(
@@ -19,7 +21,7 @@ function JobList() {
         const data = await response.data
         setJobList(data.jobs)
         setTotalPages(data.totalPages)
-        console.log(data.jobs)
+        setLoading(false)
       } catch (err) {
         console.log("Error", err)
       }
@@ -94,7 +96,11 @@ function JobList() {
       </div>
 
       {/* Job List */}
-      <div className='flex flex-wrap gap-4 justify-center'>
+      {loading?(
+        <div className="flex justify-center items-center w-full my-10">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
+        </div>):(
+            <div className='flex flex-wrap gap-4 justify-center'>
         {jobList.map((item,id) => {
           return (
             
@@ -132,7 +138,10 @@ function JobList() {
             
           )
         })}
-      </div>
+            </div>
+        )
+      }
+      
 
       {/* Pagination */}
       <div className="flex justify-center gap-4 mt-6">
@@ -147,7 +156,7 @@ function JobList() {
         <button
           disabled={currentPage === totalPages}
           onClick={() => setCurrentPage((prev) => prev + 1)}
-          className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50 cursor-pointer"
+          className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50 "
         >
           Next
         </button>
@@ -178,14 +187,14 @@ function JobList() {
             </div>
 
             <h2 className="text-white font-semibold text-lg">
-              SarkarJobsIndia
+              SarkarJobs
             </h2>
           </div>
           <p className="text-sm text-gray-400">
-            Government Part-time Jobs
+            Corporate Part-time Jobs
           </p>
           <p className="mt-2 text-sm text-gray-400">
-            Connect with government opportunities across India. Find part-time jobs that fit your skills and schedule.
+            Connect with  opportunities across India. Find part-time jobs that fit your skills and schedule.
           </p>
         </div>
 

@@ -211,14 +211,14 @@ function SingleJob() {
                             </div>
 
                             <h2 className="text-white font-semibold text-lg">
-                            SarkarJobsIndia
+                            SarkarJobs
                             </h2>
                         </div>
                         <p className="text-sm text-gray-400">
-                            Government Part-time Jobs
+                            Corporate Part-time Jobs
                         </p>
                         <p className="mt-2 text-sm text-gray-400">
-                            Connect with government opportunities across India. Find part-time jobs that fit your skills and schedule.
+                            Connect with opportunities across India. Find part-time jobs that fit your skills and schedule.
                         </p>
                         </div>
 

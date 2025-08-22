@@ -6,7 +6,7 @@ import JobList from './JobListPage/JobList'
 import JobEdit from './JobEditPage/JobEdit'
 import SingleJob from './SingleJobPage/SingleJob'
 import JobHome from './JobHomePage/JobHome'
-
+import ErrorPage from './ErrorPage/ErrorPage'
 function App() {
   
   return (
@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<JobHome></JobHome>}></Route>
           <Route path="/jobEdit/:id" element={<JobEdit></JobEdit>}></Route>
           <Route path="/jobs/:id" element={<SingleJob></SingleJob>}></Route>
-        
+          <Route path="*" element={<ErrorPage></ErrorPage>}></Route>
       </Routes>
       
     </>

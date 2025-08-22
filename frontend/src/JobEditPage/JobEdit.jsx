@@ -250,14 +250,14 @@ function JobEdit() {
                     </div>
 
                     <h2 className="text-white font-semibold text-lg">
-                    SarkarJobsIndia
+                    SarkarJobs
                     </h2>
                 </div>
                 <p className="text-sm text-gray-400">
-                    Government Part-time Jobs
+                    Corporate Part-time Jobs
                 </p>
                 <p className="mt-2 text-sm text-gray-400">
-                    Connect with government opportunities across India. Find part-time jobs that fit your skills and schedule.
+                    Connect with  opportunities across India. Find part-time jobs that fit your skills and schedule.
                 </p>
                 </div>
 
@@ -267,7 +267,7 @@ function JobEdit() {
 
             {/* Bottom border */}
             <div className="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-500">
-                © 2025 SarkarJobsIndia. All rights reserved.
+                © 2025 SarkarJobs. All rights reserved.
             </div>
             </footer>
     </div>
