@@ -1,8 +1,9 @@
-import { postJobs ,updateJob,deleteJob,getJob} from "../controllers/jobController.js";
+import { postJobs ,updateJob,deleteJob,getJob,singleJob} from "../controllers/jobController.js";
 import express from 'express'
 const route=express.Router() //route to use put, get post and delete methods
 route.post("/jobs",postJobs)
 route.put("/jobs/:id",updateJob)
 route.delete("/jobs/:id",deleteJob)
 route.get("/jobs",getJob)
+route.get("/jobs/:id",singleJob)
 export default route 

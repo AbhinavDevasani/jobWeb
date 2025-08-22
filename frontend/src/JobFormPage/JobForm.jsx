@@ -35,7 +35,7 @@ function JobForm() {
     },
   });
   const navigate=useNavigate()
-  const goTOForm=()=>{
+  const goToForm=()=>{
     navigate("/")
   }
   return (
@@ -46,9 +46,18 @@ function JobForm() {
                 <svg xmlns="http://www.w3.org/2000/svg" className="bg-blue-700 p-1 h-[5vh] w-[3vw] text-white rounded-xl lucide lucide-briefcase w-6 h-6 text-white" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"  data-filename="layout" data-linenumber="183" data-visual-selector-id="layout183" data-source-location="layout:183:16" data-dynamic-content="false"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect></svg>
                 <p className='font-[700] text-[20px] mt-[2px] ml-2'>SARKAR JOBS</p>
                 <div className="flex gap-4 ml-6 mt-[5px] text-black ">
-                    
-                    <p className="hidden sm:block w-[4vw] cursor-pointer" onClick={()=>goTOForm()}>Job List</p>
-                    <p className=' w-[5vw] '>Job Form</p>
+                   <div className='flex'>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-5 mt-1 text-gray-700">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                        <p className="hidden sm:block w-[4vw] ml-1 text-gray-700 font-[600] mt-[1px] cursor-pointer" onClick={()=>goToForm()}>Jobs</p>
+                    </div>
+                    <div className='flex'>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-5 mt-1 text-gray-700">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                        </svg>
+                        <p className="hidden sm:block w-[4vw] ml-1 text-gray-700 font-[600] mt-[1px]">Application</p>
+                    </div>
                 </div>
                 </div>
                     

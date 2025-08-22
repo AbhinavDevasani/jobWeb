@@ -89,3 +89,22 @@ export const getJob=async(req,res)=>{
         })
     }
 }
+//single Job
+export const singleJob=async(req,res)=>{
+    const id=req.params.id;
+    const data=await Job.findById(id)
+    try{
+        
+        res.status(200).json({
+            message:"Single job fetched successfully",
+            data
+        })
+    }
+    catch(err){
+        res.staus(400).json({
+            message:"Single job didn't fetch sucessfully",
+            err
+        })
+    }
+
+}

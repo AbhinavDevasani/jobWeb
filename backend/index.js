@@ -7,9 +7,14 @@ import cors from 'cors'
 import errorHandler from "./middleWare/errorHandler.js";
 const app=express()
 dotenv.config()
+app.use(cors({
+    origin: "http://localhost:5173",  // allow frontend origin
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]  // include content-type
+}));
 app.use(bodyParser.json())
 app.use("/api",route)
-app.use(cors)//cors policy
+
 app.use(errorHandler)//Used for error handling
 const port=process.env.PORT||5000
 const uri=process.env.MONGO_URI
