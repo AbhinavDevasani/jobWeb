@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState,useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 
 function JobList() {
   const navigate = useNavigate()
-  const [jobList, setJobList] = useState([])
-  const [currentPage, setCurrentPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(1)
-  const [search, setSearch] = useState("")   // search state
+   const [jobList, setJobList] = useState([])
+    const [currentPage, setCurrentPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(1)
+    const [search, setSearch] = useState("")   // search state
 
   // Fetch jobs whenever currentPage or search changes
   useEffect(() => {
@@ -28,13 +28,16 @@ function JobList() {
   }, [currentPage, search])
 
   const goToForm = () => {
-    navigate("/jobForm")
+    navigate("/jobs/new")
   }
   const goToJobEdit=(id)=>{
     navigate(`/jobEdit/${id}`)
   }
+  const goToHome=()=>{
+    navigate("/")
+  }
   const goToSingleView=(id)=>{
-    navigate(`/jobView/${id}`)
+    navigate(`/jobs/${id}`)
   }
   // handle search
   const handleSearch = (e) => {
@@ -57,14 +60,20 @@ function JobList() {
             <p className='font-[700] text-[20px] mt-[2px] ml-2'>SARKAR JOBS</p>
             <div className="flex gap-4 ml-6 mt-[5px] text-black ">
                 <div className='flex'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-5 mt-1 text-gray-700">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5 mt-1 text-gray-700">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                    </svg>
+                    <p className="hidden sm:block w-[4vw] ml-1 text-gray-700 font-[600] mt-[1px] cursor-pointer" onClick={()=>goToHome()}>Home</p>
+                </div>
+                <div className='flex'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5 mt-1 text-gray-700">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                     </svg>
                     <p className="hidden sm:block w-[4vw] ml-1 text-gray-700 font-[600] mt-[1px] cursor-pointer" >Jobs</p>
                 </div>
                 <div className='flex'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-5 mt-1 text-gray-700">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5 mt-1 text-gray-700">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                     </svg>
                     <p className="hidden sm:block w-[4vw] ml-1 text-gray-700 font-[600] mt-[1px] cursor-pointer" onClick={()=>goToForm()}>Application</p>
                 </div>
@@ -100,14 +109,21 @@ function JobList() {
                 </div>
                 <div className="flex justify-between">
                     <div className='flex'>
-                    <p className='text-[19px] ml-3 text-gray-700 font-[500]'>{item.company}</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 mt-[3px]">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                        </svg>
+                        <p className='text-[19px]  text-gray-700 font-[500] ml-1'>{item.company}</p>
                     </div>
                     <p className="border-1 rounded-lg text-[10px] p-1 w-[4vw] text-center bg-green-200 border-green-300 text-green-700">{item.jobType}</p>
                 </div>
                 <p className="mt-4 text-gray-700">{item.description}</p>
                 <div className="flex mt-3 justify-between">
                     <div className='flex'>
-                    <p>{item.location}</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                        </svg>
+                        <p>{item.location}</p>
                     </div>
                     <p>₹{item.salary}/ monthly</p>
                 </div>
@@ -123,7 +139,7 @@ function JobList() {
         <button
           disabled={currentPage === 1}
           onClick={() => setCurrentPage((prev) => prev - 1)}
-          className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
+          className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50 cursor-pointer"
         >
           Prev
         </button>
@@ -131,11 +147,57 @@ function JobList() {
         <button
           disabled={currentPage === totalPages}
           onClick={() => setCurrentPage((prev) => prev + 1)}
-          className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
+          className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50 cursor-pointer"
         >
           Next
         </button>
       </div>
+      {/*Footer */}
+      <footer className="bg-[#0F172A] text-gray-300 py-10 px-6 flex flex-col justify-center align-center mt-10">
+      <div className="max-w-7xl mx-auto gap-8 ">
+
+        {/* Left Section - Logo + About */}
+        <div className='flex flex-col items-center justify-center'>
+          <div className=" gap-2 mb-3 flex flex-col  items-center justify-center">
+            {/* Icon */}
+            <div className="bg-blue-500 p-2 rounded-xl flex items-center justify-center w-[3vw]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="white"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M20.25 7.5l-.625 10.63a2.25 2.25 0 01-2.247 2.12H6.622a2.25 2.25 0 01-2.247-2.12L3.75 7.5m16.5 0a2.25 2.25 0 00-2.25-2.25H6a2.25 2.25 0 00-2.25 2.25m16.5 0H3.75"
+                />
+              </svg>
+            </div>
+
+            <h2 className="text-white font-semibold text-lg">
+              SarkarJobsIndia
+            </h2>
+          </div>
+          <p className="text-sm text-gray-400">
+            Government Part-time Jobs
+          </p>
+          <p className="mt-2 text-sm text-gray-400">
+            Connect with government opportunities across India. Find part-time jobs that fit your skills and schedule.
+          </p>
+        </div>
+
+        
+        
+      </div>
+
+      {/* Bottom border */}
+      <div className="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-500">
+        © 2025 SarkarJobsIndia. All rights reserved.
+      </div>
+    </footer>
     </div>
   )
 }
