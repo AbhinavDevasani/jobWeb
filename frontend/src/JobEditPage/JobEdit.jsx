@@ -33,7 +33,7 @@ function JobEdit() {
             values
             );
             console.log("Job updated Successfully", response.data);
-            navigate("/")
+            navigate("/home")
             resetForm();
         } catch (err) {
             console.log(err);
