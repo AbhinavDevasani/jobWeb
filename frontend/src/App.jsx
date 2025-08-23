@@ -17,10 +17,10 @@ function App() {
    
       <Routes>
           <Route path="/register" element={<RegisterPage></RegisterPage>}></Route>
-          <Route path="/login" element={<LoginPage></LoginPage>}></Route>
+          <Route path="/" element={<LoginPage></LoginPage>}></Route>
           <Route path="/jobs/new" element={<JobForm></JobForm>}></Route>
           <Route path="/jobs" element={<JobList></JobList>}></Route>
-          <Route path="/" element={<JobHome></JobHome>}></Route>
+          <Route path="/home" element={<JobHome></JobHome>}></Route>
           <Route path="/jobEdit/:id" element={<JobEdit></JobEdit>}></Route>
           <Route path="/jobs/:id" element={<SingleJob></SingleJob>}></Route>
           <Route path="*" element={<ErrorPage></ErrorPage>}></Route>

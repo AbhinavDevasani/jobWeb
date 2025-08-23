@@ -13,7 +13,7 @@ function LoginPage() {
     e.preventDefault();
     try {
       await login(email, password);
-      navigate("/"); // after login, go to dashboard
+      navigate("/home"); // after login, go to dashboard
     } catch{
       setError("Invalid email or password");
     }

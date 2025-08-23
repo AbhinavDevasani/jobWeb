@@ -47,7 +47,7 @@ function JobEdit() {
         navigate("/jobs")
     }
     const goToHome=()=>{
-        navigate("/")
+        navigate("/home")
     }
     const goToAccount=()=>{
         navigate("/account")

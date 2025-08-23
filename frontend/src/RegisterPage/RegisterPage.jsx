@@ -17,7 +17,7 @@ function RegisterPage() {
       await register(username, email, password);
       setSuccess("Registration successful! Please login.");
       setError("");
-      setTimeout(() => navigate("/login"), 1500);
+      setTimeout(() => navigate("/"), 1500);
     } catch{
       setError("Failed to register");
       setSuccess("");

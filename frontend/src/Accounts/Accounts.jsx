@@ -7,10 +7,10 @@ const Accounts = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("/");
   };
   const goToHome=()=>{
-    navigate("/")
+    navigate("/home")
   }
   const goToForm=()=>{
     navigate("/jobs/new")

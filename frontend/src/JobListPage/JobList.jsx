@@ -36,7 +36,7 @@ function JobList() {
     navigate(`/jobEdit/${id}`)
   }
   const goToHome=()=>{
-    navigate("/")
+    navigate("/home")
   }
   const goToSingleView=(id)=>{
     navigate(`/jobs/${id}`)

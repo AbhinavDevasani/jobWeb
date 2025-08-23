@@ -20,7 +20,7 @@ function SingleJob() {
         navigate("/jobs/new")
     }
     const goToHome=()=>{
-        navigate("/")
+        navigate("/home")
     }
     const goToListPage=()=>{
         navigate("/jobs")
