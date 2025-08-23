@@ -45,6 +45,10 @@ function JobForm() {
   const goToAccount=()=>{
     navigate("/account")
   }
+  const submittedJob=()=>{
+    alert("Job created successfully")
+    navigate("/jobs")
+  }
   return (
     <div>
         <nav className="flex w-full px-[4%] py-5 relative z-10 h-[5vh] sm:h-[15vh] items-center justify-between bg-gray-100">
@@ -266,6 +270,7 @@ function JobForm() {
                     variant="contained"
                     color="primary"
                     sx={{ px: 4, py: 1 }}
+                    onClick={()=>submittedJob()}
                 >
                     Submit
                 </Button>
