@@ -66,8 +66,14 @@ export const getJob=async(req,res)=>{
     const search=req.query.search
     const skip=(page-1)*limit
     let query={}
-    if(search){
-        query.title={$regex:search,$options:'i'}
+    if (search) {
+        query = {
+            $or: [
+            { title: { $regex: search, $options: "i" } },
+            { location: { $regex: search, $options: "i" } },
+            { company: { $regex: search, $options: "i" } }
+        ]
+    };  
     }
     const totalItems=await Job.countDocuments(query)
     const jobs=await Job.find(query)

@@ -2,9 +2,11 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import express from 'express'
 import dotenv from 'dotenv'
-import route from "./routes/jobRoute.js";
+import router1 from "./routes/jobRoute.js";
 import cors from 'cors'
+import router from './routes/userRoute.js'
 import errorHandler from "./middleWare/errorHandler.js";
+
 const app=express()
 dotenv.config()
 app.use(cors({
@@ -13,8 +15,8 @@ app.use(cors({
     allowedHeaders: ["Content-Type", "Authorization"]  // include content-type
 }));
 app.use(bodyParser.json())
-app.use("/api",route)
-
+app.use("/api",router1)
+app.use("/api/users",router)
 app.use(errorHandler)//Used for error handling
 const port=process.env.PORT||5000
 const uri=process.env.MONGO_URI
