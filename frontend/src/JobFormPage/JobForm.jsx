@@ -48,7 +48,7 @@ function JobForm() {
   return (
     <div>
         <nav className="flex w-full px-[4%] py-5 relative z-10 h-[5vh] sm:h-[15vh] items-center justify-between bg-gray-100">
-            {/* Left side - Logo & Title */}
+            
             <div className="flex items-center">
                 <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +67,7 @@ function JobForm() {
                 </svg>
                 <p className="font-[700] text-[20px] ml-2 text-gray-800">SARKAR JOBS</p>
 
-                {/* Menu Items */}
+                
                 <div className="flex gap-4 ml-6 text-black">
                 <div className="flex items-center cursor-pointer">
                     <svg
@@ -108,10 +108,7 @@ function JobForm() {
                     <p className="hidden sm:block ml-1 text-gray-700 font-[600]">Jobs</p>
                 </div>
 
-                <div
-                    className="flex items-center cursor-pointer"
-                    
-                >
+                <div className="flex items-center">
                     <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -131,13 +128,8 @@ function JobForm() {
                     </p>
                 </div>
                 </div>
-            </div>
-
-            {/* Right side - Account */}
-            <div
-                className="flex items-center gap-2 cursor-pointer"
-                onClick={() => goToAccount()}
-            >
+            </div> 
+            <div className="flex items-center gap-2" onClick={() => goToAccount()}>
                 <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

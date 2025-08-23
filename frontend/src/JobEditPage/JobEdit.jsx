@@ -246,7 +246,7 @@ function JobEdit() {
                 />
                 </Grid>
 
-                {/* Salary & Job Type Side by Side */}
+                {/* Salary & Job Type */}
                 <Grid size={12}>
                 <TextField
                     fullWidth
@@ -305,10 +305,10 @@ function JobEdit() {
          <footer className="bg-[#0F172A] text-gray-300 py-10 px-6 flex flex-col justify-center align-center mt-10">
             <div className="max-w-7xl mx-auto gap-8 ">
 
-                {/* Left Section - Logo + About */}
+                
                 <div className='flex flex-col items-center justify-center'>
                 <div className=" gap-2 mb-3 flex flex-col  items-center justify-center">
-                    {/* Icon */}
+                   
                     <div className="bg-blue-500 p-2 rounded-xl flex items-center justify-center w-[3vw]">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -342,7 +342,7 @@ function JobEdit() {
                 
             </div>
 
-            {/* Bottom border */}
+           
             <div className="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-500">
                 © 2025 SarkarJobs. All rights reserved.
             </div>

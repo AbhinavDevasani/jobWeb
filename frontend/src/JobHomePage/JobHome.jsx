@@ -14,7 +14,7 @@ function JobHome() {
   return (
     <div>
         <nav className="flex w-full px-[4%] py-5 relative z-10 h-[5vh] sm:h-[15vh] items-center justify-between">
-            {/* Left side - Logo & Title */}
+            
             <div className="flex items-center">
                 <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -33,9 +33,9 @@ function JobHome() {
                 </svg>
                 <p className="font-[700] text-[20px] ml-2 text-gray-800">SARKAR JOBS</p>
 
-                {/* Menu Items */}
+               
                 <div className="flex gap-4 ml-6 text-black">
-                <div className="flex items-center cursor-pointer">
+                <div className="flex items-center ">
                     <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -99,7 +99,7 @@ function JobHome() {
                 </div>
             </div>
 
-            {/* Right side - Account */}
+            
             <div
                 className="flex items-center gap-2 cursor-pointer"
                 onClick={() => goToAccount()}
@@ -125,13 +125,13 @@ function JobHome() {
         <div className="flex flex-col items-center justify-center h-[80vh] bg-gradient-to-b from-blue-50 to-purple-50 px-4 text-center">
             
 
-            {/* Heading */}
+           
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
                 Find Your Dream{" "}
                 <span className="text-indigo-600">Job</span>
             </h1>
 
-            {/* Subtext */}
+            
             <p className="text-lg text-gray-600 max-w-2xl">
                 Discover thousands of part-time and full time opportunities across India.  
                 Secure your future with trusted employment.
@@ -140,10 +140,10 @@ function JobHome() {
         <footer className="bg-[#0F172A] text-gray-300 py-10 px-6 flex flex-col justify-center align-center ">
             <div className="max-w-7xl mx-auto gap-8 ">
 
-                {/* Left Section - Logo + About */}
+              
                 <div className='flex flex-col items-center justify-center'>
                 <div className=" gap-2 mb-3 flex flex-col  items-center justify-center">
-                    {/* Icon */}
+                   
                     <div className="bg-blue-500 p-2 rounded-xl flex items-center justify-center w-[3vw]">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -177,7 +177,7 @@ function JobHome() {
                 
             </div>
 
-            {/* Bottom border */}
+            
             <div className="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-500">
                 © 2025 SarkarJobs. All rights reserved.
             </div>
