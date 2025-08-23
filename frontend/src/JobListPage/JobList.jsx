@@ -16,7 +16,7 @@ function JobList() {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/jobs?page=${currentPage}&limit=6&search=${search}`
+          `https://jobweb-1.onrender.com/api/jobs?page=${currentPage}&limit=6&search=${search}`
         )
         const data = await response.data
         setJobList(data.jobs)

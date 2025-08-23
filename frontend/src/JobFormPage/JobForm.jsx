@@ -25,7 +25,7 @@ function JobForm() {
     onSubmit: async (values, { resetForm }) => {
       try {
         const response = await axios.post(
-          "http://localhost:8000/api/jobs",
+          "https://jobweb-1.onrender.com/api/jobs",
           values
         );
         console.log("Job created Successfully", response.data);

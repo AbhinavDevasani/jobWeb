@@ -29,7 +29,7 @@ function JobEdit() {
         onSubmit: async (values, { resetForm }) => {
         try {
             const response = await axios.put(
-            `http://localhost:8000/api/jobs/${id}`,
+            `https://jobweb-1.onrender.com/api/jobs/${id}`,
             values
             );
             console.log("Job updated Successfully", response.data);

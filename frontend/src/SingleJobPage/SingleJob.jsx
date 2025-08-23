@@ -9,7 +9,7 @@ function SingleJob() {
     //use Effect to get single detailed data
     useEffect(()=>{
         const getdata=async()=>{
-            const data=await axios.get(`http://localhost:8000/api/jobs/${id}`)
+            const data=await axios.get(`https://jobweb-1.onrender.com/api/jobs/${id}`)
             setSingleJob(data.data.data)
             
         }
@@ -27,7 +27,7 @@ function SingleJob() {
     }
     
         const deleteJob=async()=>{
-        const jobDelete=await axios.delete(`http://localhost:8000/api/jobs/${id}`)
+        const jobDelete=await axios.delete(`https://jobweb-1.onrender.com/api/jobs/${id}`)
         console.log(jobDelete)
         alert("Job deleted successfuly")
         navigate("/jobs")
