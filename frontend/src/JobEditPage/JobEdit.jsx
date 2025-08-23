@@ -32,8 +32,9 @@ function JobEdit() {
             `https://jobweb-1.onrender.com/api/jobs/${id}`,
             values
             );
-            console.log("Job updated Successfully", response.data);
-            navigate("/home")
+            console.log(response)
+            alert("Job updated successfully")
+            navigate("/jobs")
             resetForm();
         } catch (err) {
             console.log(err);
