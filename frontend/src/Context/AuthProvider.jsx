@@ -1,63 +1,69 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import Cookies from "js-cookie";
 import AuthContext from "./AuthContext";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("token") || null);
-
-  const API = axios.create({
-    baseURL: "http://localhost:8000/api",
-  });
-
-  API.interceptors.request.use((config) => {
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  });
-
+  const url = "http://localhost:8000/api";
+  // Load user on mount if cookie exists
   useEffect(() => {
-    if (token) {
-      API.get("/users/current")
-        .then((res) => setUser(res.data))
-        .catch(() => {
-          setUser(null);
-          setToken(null);
-          localStorage.removeItem("token");
+    const fetchCurrentUser = async () => {
+        const token = Cookies.get("jwt_token");
+        if (!token) return;
+        try {
+            const response = await fetch(`${url}/users/current`, {
+            headers: { Authorization: `Bearer ${token}` },
         });
-    }
-  }, [token]);
-
+        if (!response.ok) {
+            throw new Error("Failed to fetch user");
+        }
+        const data = await response.json();
+        setUser(data);
+        } 
+        catch (error) {
+        console.error("Error fetching current user:", error);   
+        }
+    };
+        fetchCurrentUser();
+    }, []);
   const login = async (email, password) => {
-            const res = await API.post("/users/login", { email, password });
-            const accessToken = res.data.accessToken;
+    const res = await fetch(`${url}/users/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
 
-            localStorage.setItem("token", accessToken);
-            setToken(accessToken);
-            setUser(user)
-            
-            if (res.data.user) {
-                setUser(res.data.user);
-            } else {
-               
-                const userRes = await API.get("/users/current");
-                setUser(userRes.data);
-            }
-        };
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error);
 
-    const register = async (username, email, password) => {
-        await API.post("/users/register", { username, email, password });
+    // Store token in cookie
+    Cookies.set("jwt_token", data.accessToken, { expires: 30 });
+
+    // Set user state
+    setUser(data.user);
+
+  };
+  
+  const register = async (username, email, password) => {
+    const res = await fetch(`${url}/users/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, email, password }),
+    });
+
+    if (!res.ok) {
+      const data = await res.json();
+      throw new Error(data.error);
+    }
   };
 
   const logout = () => {
+    Cookies.remove("jwt_token");
     setUser(null);
-    setToken(null);
-    localStorage.removeItem("token");
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, register, logout }}>
+    <AuthContext.Provider value={{ user, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
