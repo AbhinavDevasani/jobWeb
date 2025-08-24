@@ -2,6 +2,7 @@ import React  from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { useEffect } from "react";
 import { TextField, Button, Box, Typography, Paper, Grid } from "@mui/material";
 import { useNavigate ,useParams} from "react-router";
 function JobEdit() {
@@ -20,6 +21,7 @@ function JobEdit() {
         jobType:"",
         
         },
+        enableReinitialize: true, 
         validationSchema: Yup.object({
         title: Yup.string().required("Job title is required"),
         company: Yup.string().required("Company name is required"),
@@ -41,6 +43,28 @@ function JobEdit() {
         }
         },
     });
+    useEffect(() => {
+    const fetchJob = async () => {
+      try {
+        const response = await axios.get(`https://jobweb-1.onrender.com/api/jobs/${id}`);
+         
+        formik.setValues({
+          title: response.data.data.title || "",
+          company: response.data.data.company || "",
+          location: response.data.data.location || "",
+          description: response.data.data.description || "",
+          salary: response.data.data.salary || "",
+          jobType: response.data.data.jobType || "",
+        });
+      } catch (err) {
+        console.error("Error fetching job:", err);
+      }
+     
+    };
+
+    fetchJob();
+  }, [id]);
+  
     const goToForm=()=>{
         navigate("/jobs/new")
     }
