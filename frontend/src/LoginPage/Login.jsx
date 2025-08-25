@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext ,useEffect} from "react";
 import AuthContext from "../Context/AuthContext";
 import { useNavigate } from "react-router";
-
+import Cookies from 'js-cookie'
 function LoginPage() {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -18,7 +18,12 @@ function LoginPage() {
       setError("Invalid email or password");
     }
   };
-
+  useEffect(() => {
+    const token = Cookies.get("jwt_token");
+    if (token) {
+      navigate("/home");
+    }
+  }, [navigate]);
   return (
      <div className="flex items-center justify-center min-h-screen bg-blue-200">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
