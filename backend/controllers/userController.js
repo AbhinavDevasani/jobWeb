@@ -29,7 +29,7 @@ export const loginUser = asyncHandler(async (req, res) => {
   if (!email || !password) {
     res.status(401);
     throw new Error("All Fields are Required..!");
-  }
+  }   
 
   const user = await User.findOne({ email });
   if (!user) {
