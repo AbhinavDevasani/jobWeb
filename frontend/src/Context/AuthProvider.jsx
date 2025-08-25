@@ -4,7 +4,7 @@ import AuthContext from "./AuthContext";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const url = "https://jobweb-1.onrender.com/api";0
+  const url = "https://jobweb-1.onrender.com/api";
   // Load user on mount if cookie exists
   useEffect(() => {
     const fetchCurrentUser = async () => {
