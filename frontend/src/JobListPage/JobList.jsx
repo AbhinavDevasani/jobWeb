@@ -19,6 +19,7 @@ function JobList() {
           `https://jobweb-1.onrender.com/api/jobs?page=${currentPage}&limit=10&search=${search}`
         )
         const data = await response.data
+        console.log(data)
         setJobList(data.jobs)
         setTotalPages(data.totalPages)
         setLoading(false)
@@ -216,8 +217,6 @@ function JobList() {
             </div>
         )
       }
-      
-
       {/* Pagination */}
       <div className="flex justify-center gap-4 mt-6">
         <button

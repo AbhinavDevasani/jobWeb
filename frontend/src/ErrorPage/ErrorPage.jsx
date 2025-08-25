@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 function ErrorPage() {
     const navigate=useNavigate()
     const goToHome=()=>{
-        navigate("/")
+        navigate("/home")
     }
   return (
    <div className="bg-[url('https://i.postimg.cc/Qd21yq2D/snow-removal-machine-working-high-ski-slope-snowstorm-454047-2149-1.png')] h-[100vh] w-full bg-cover flex flex-col justify-center items-center">  

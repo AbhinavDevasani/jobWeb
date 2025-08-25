@@ -10,7 +10,7 @@ import errorHandler from "./middleWare/errorHandler.js";
 const app=express()
 dotenv.config()
 app.use(cors({
-    origin: "http://localhost:5173",  // allow frontend origin
+    origin: "https://jobweb-1.onrender.com",  // allow frontend origin
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]  // include content-type
 }));
