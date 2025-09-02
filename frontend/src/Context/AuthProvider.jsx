@@ -12,11 +12,12 @@ const AuthProvider = ({ children }) => {
         if (!token) return;
         try {
             const response = await fetch(`${url}/users/current`, {
+            method:"GET",
             headers: { Authorization: `Bearer ${token}` },
         });
-        if (!response.ok) {
-            throw new Error("Failed to fetch user");
-        }
+          if (!response.ok) {
+              throw new Error("Failed to fetch user");
+          }
         const data = await response.json();
         setUser(data);
         } 
@@ -34,6 +35,7 @@ const AuthProvider = ({ children }) => {
     });
 
     const data = await res.json();
+    console.log(data)
     if (!res.ok) throw new Error(data.error);
 
     // Store token in cookie
