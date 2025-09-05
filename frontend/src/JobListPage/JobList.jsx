@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect, useContext } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
-
+import AuthContext from '../Context/AuthContext'
 function JobList() {
     const navigate = useNavigate()
     const [jobList, setJobList] = useState([])
@@ -9,17 +9,27 @@ function JobList() {
     const [totalPages, setTotalPages] = useState(1)
     const [search, setSearch] = useState("")   // search state
     const [loading, setLoading] = useState(false)  // loader state
-    
- 
+     const [debouncedSearch, setDebouncedSearch] = useState("")
+  
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearch(search);
+      setCurrentPage(1); // reset to first page when typing new search
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [search]);
   useEffect(() => {
     setLoading(true)
     const getData = async () => {
       try {
         const response = await axios.get(
-          `https://jobweb-1.onrender.com/api/jobs?page=${currentPage}&limit=10&search=${search}`
+          `https://jobweb-1.onrender.com/api/jobs?page=${currentPage}&limit=10&search=${debouncedSearch}`
         )
         const data = await response.data
-        console.log(data)
+       
         setJobList(data.jobs)
         setTotalPages(data.totalPages)
         setLoading(false)
@@ -28,8 +38,8 @@ function JobList() {
       }
     }
     getData()
-  }, [currentPage, search])
-
+  }, [currentPage, debouncedSearch])
+  const {user}=useContext(AuthContext)
   const goToForm = () => {
     navigate("/jobs/new")
   }
@@ -112,29 +122,28 @@ function JobList() {
                     </svg>
                     <p className="hidden sm:block ml-1 text-gray-700 font-[600]">Jobs</p>
                 </div>
-
-                <div
-                    className="flex items-center cursor-pointer"
-                    onClick={()=>goToForm()}
-                >
-                    <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-5 text-gray-700"
-                    >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
-                    />
-                    </svg>
-                    <p className="hidden sm:block ml-1 text-gray-700 font-[600]">
-                    Application
-                    </p>
-                </div>
+                  {user?.email==="rahul@gmail.com"&&<div
+                      className="flex items-center cursor-pointer"
+                      onClick={()=>goToForm()}
+                  >
+                      <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="size-5 text-gray-700"
+                      >
+                      <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+                      />
+                      </svg>
+                      <p className="hidden sm:block ml-1 text-gray-700 font-[600]">
+                      Application
+                      </p>
+                  </div>}
                 </div>
             </div>
 
@@ -184,9 +193,11 @@ function JobList() {
                 <div className="flex justify-between items-start mb-2">
                     <div className="flex items-center justify-between w-[100vw]">
                     <p className='text-xl font-semibold'>{item.title}</p>
+                    {user?.email==="rahul@gmail.com"&&
                     <svg xmlns="http://www.w3.org/2000/svg" onClick={()=>goToJobEdit(item._id)} fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 cursor-pointer">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                        </svg>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                    </svg>}
+                    
                     </div>
                 </div>
                 <div className="flex justify-between">

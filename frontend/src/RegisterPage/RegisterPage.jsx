@@ -83,7 +83,7 @@ function RegisterPage() {
         </form>
         <p className="text-center text-sm text-gray-600 mt-6">
           Already have an account?{" "}
-          <a href="/login" className="text-blue-600 hover:underline">
+          <a href="/" className="text-blue-600 hover:underline">
             Login
           </a>
         </p>

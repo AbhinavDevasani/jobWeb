@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import AuthContext from "../Context/AuthContext";
 import { useNavigate } from "react-router";
 
+
 const Accounts = () => {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const Accounts = () => {
   const goToLoginPage=()=>{
     navigate("/")
   }
+
   if (!user) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -92,8 +94,7 @@ const Accounts = () => {
                     </svg>
                     <p className="hidden sm:block ml-1 text-gray-700 font-[600]">Jobs</p>
                 </div>
-
-                <div
+                {user.email==="rahul@gmail.com"&&<div
                     className="flex items-center cursor-pointer"
                     onClick={() => goToForm()}
                 >
@@ -114,7 +115,8 @@ const Accounts = () => {
                     <p className="hidden sm:block ml-1 text-gray-700 font-[600]">
                     Application
                     </p>
-                </div>
+                </div>}
+                
                 </div>
             </div>
 

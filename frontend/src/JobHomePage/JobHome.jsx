@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router'
+import AuthContext from '../Context/AuthContext'
 function JobHome() {
     const navigate=useNavigate()
     const goToListPage=()=>{
@@ -11,6 +12,9 @@ function JobHome() {
     const goToAccount=()=>{
         navigate("/account")
     }
+    const {user}=useContext(AuthContext)
+    
+    
   return (
     <div>
         <nav className="flex w-full px-[4%] py-5 relative z-10 h-[5vh] sm:h-[15vh] items-center justify-between">
@@ -73,29 +77,26 @@ function JobHome() {
                     </svg>
                     <p className="hidden sm:block ml-1 text-gray-700 font-[600]">Jobs</p>
                 </div>
-
-                <div
-                    className="flex items-center cursor-pointer"
-                    onClick={() => goToForm()}
-                >
-                    <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-5 text-gray-700"
-                    >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
-                    />
-                    </svg>
-                    <p className="hidden sm:block ml-1 text-gray-700 font-[600]">
-                    Application
-                    </p>
-                </div>
+                {user?.email==="rahul@gmail.com"&&
+                    <div className="flex items-center cursor-pointer" onClick={() => goToForm()}>
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="size-5 text-gray-700"
+                        >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+                        />
+                        </svg>
+                        <p className="hidden sm:block ml-1 text-gray-700 font-[600]">
+                        Application
+                        </p>
+                    </div>}      
                 </div>
             </div>
 
