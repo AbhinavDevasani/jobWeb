@@ -114,3 +114,31 @@ export const singleJob=async(req,res)=>{
     }
 
 }
+//apply job
+export const applyJob=async(req,res)=>{
+
+     try {
+        
+        const job = await Job.findById(req.params.id).populate("applicants", "username email"); // only show name & email
+
+    if (!job){
+         return res.status(404).json({ message: "Job not found" });
+    }
+    res.status(200).json(job.applicants);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}
+//get applications
+export const getApplicants = async (req, res) => {
+  try {
+    const job = await Job.findById(req.params.id)
+      .populate("applicants", "username email"); // only show name & email
+
+    if (!job) return res.status(404).json({ message: "Job not found" });
+
+    res.status(200).json(job.applicants);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
