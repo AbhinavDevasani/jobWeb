@@ -115,20 +115,25 @@ export const singleJob=async(req,res)=>{
 
 }
 //apply job
-export const applyJob=async(req,res)=>{
+export const applyJob = async (req, res) => {
+  try {
+    const jobId = req.params.id;
+    const userId = req.user._id;
 
-     try {
-        
-        const job = await Job.findById(req.params.id).populate("applicants", "username email"); // only show name & email
-
-    if (!job){
-         return res.status(404).json({ message: "Job not found" });
+    const job = await Job.findById(jobId);
+    // prevent duplicate applications
+    if (job.applicants.includes(userId)) {
+      return res.status(400).json({ message: "Already applied" });
     }
-    res.status(200).json(job.applicants);
+
+    job.applicants.push(userId);
+    await job.save();
+
+    res.status(200).json({ message: "Applied successfully", job });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-}
+};
 //get applications
 export const getApplicants = async (req, res) => {
   try {
