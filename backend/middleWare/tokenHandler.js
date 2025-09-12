@@ -1,28 +1,31 @@
 import jwt from "jsonwebtoken";
+import User from "../model/userModel.js";
 
-// Middleware to validate JWT
-export const validateToken = (req, res, next) => {
+export const validateToken = async (req, res, next) => {
   let token;
-  const userToken = req.headers.Authorization || req.headers.authorization;
+  const userToken = req.headers.authorization || req.headers.Authorization;
 
   if (userToken && userToken.startsWith("Bearer")) {
-    token = userToken.split(" ")[1];
+    try {
+      token = userToken.split(" ")[1];
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_STRING, (err, decoded) => {
-      if (err) {
-        res.status(401);
-        throw new Error("Not a Valid user");
+      // verify returns decoded payload directly
+      const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_STRING);
+
+      // find user and attach
+      req.user = await User.findById(decoded.id).select("-password");
+
+      if (!req.user) {
+        return res.status(401).json({ message: "User not found" });
       }
-      req.user = decoded.user;
-      next();
-    });
 
-    if (!token) {
-      res.status(401);
-      throw new Error("Token is Expired");
+      next();
+    } catch (err) {
+      return res.status(401).json({ message: "Not a valid token" });
     }
   } else {
-    res.status(401);
-    throw new Error("Authorization header missing or invalid");
+    return res
+      .status(401)
+      .json({ message: "Authorization header missing or invalid" });
   }
 };
