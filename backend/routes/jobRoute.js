@@ -1,4 +1,4 @@
-import { postJobs ,updateJob,deleteJob,getJob,singleJob, applyJob, getApplicants} from "../controllers/jobController.js";
+import { postJobs ,updateJob,deleteJob,getJob,singleJob} from "../controllers/jobController.js";
 import { validateToken } from "../middleWare/tokenHandler.js";
 import express from 'express'
 const router1=express.Router() //route to use put, get post and delete methods
@@ -7,6 +7,5 @@ router1.route("/jobs/:id").put(updateJob).delete(deleteJob).get(singleJob)
 //route.delete("/jobs/:id",deleteJob)
 router1.route("/jobs").get(getJob)
 //route.get("/jobs/:id",singleJob)
-router1.post("/applyJob/:id",validateToken,applyJob)
-router1.post("/getJobs/:id",getApplicants)
+
 export default router1 

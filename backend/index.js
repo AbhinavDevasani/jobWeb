@@ -6,7 +6,7 @@ import router1 from "./routes/jobRoute.js";
 import cors from 'cors'
 import router from './routes/userRoute.js'
 import errorHandler from "./middleWare/errorHandler.js";
-
+import router2 from "./routes/applyRoute.js";
 const app=express()
 dotenv.config()
 app.use(cors({
@@ -17,6 +17,7 @@ app.use(cors({
 app.use(bodyParser.json())
 app.use("/api",router1)
 app.use("/api/users",router)
+app.use("/api/users",router2)
 app.use(errorHandler)//Used for error handling
 const port=process.env.PORT||5000
 const uri=process.env.MONGO_URI

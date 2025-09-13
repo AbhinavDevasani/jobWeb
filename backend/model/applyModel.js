@@ -1,15 +1,16 @@
 import mongoose from 'mongoose';
-//Job model
-const jobSchema=new mongoose.Schema({
-    title:{
+//Job Apply model
+const applySchema=new mongoose.Schema({
+    jobId: { type: mongoose.Schema.Types.ObjectId, ref: "Job", required: true },
+    name:{
         type:String,
         required:true
     },
-    company:{
+    email:{
         type:String,
         required:true
     },
-    location:{
+    number:{
         type:String,
         required:true
     },
@@ -17,17 +18,9 @@ const jobSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    salary:{
-        type:String,
-        
-    },
-    jobType:{
-        type:String,
-        required:true
-    },
-    postedAt:{
+    appliedAt:{
         type:Date,
         default:Date.now()
-    },
+    }
 })
-export default mongoose.model("Job",jobSchema,"Jobs")
+export default mongoose.model("Application",applySchema,"Applications")
