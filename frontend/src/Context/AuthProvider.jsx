@@ -5,28 +5,47 @@ import AuthContext from "./AuthContext";
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const url = "https://jobweb-1.onrender.com/api";
-  // Load user on mount if cookie exists
+   const [loading, setLoading] = useState(true)  // loader state
   useEffect(() => {
     const fetchCurrentUser = async () => {
-        const token = Cookies.get("jwt_token");
-        if (!token) return;
-        try {
-            const response = await fetch(`${url}/users/current`, {
-            method:"GET",
-            headers: { Authorization: `Bearer ${token}` },
+      const token = Cookies.get("jwt_token");
+      if (!token) {
+        setUser(null);
+        setLoading(false);
+        return;
+      }
+      try {
+        const response = await fetch(`${url}/users/current`, {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
         });
-          if (!response.ok) {
-              throw new Error("Failed to fetch user");
-          }
-        const data = await response.json();
-        setUser(data);
-        } 
-        catch (error) {
-        console.error("Error fetching current user:", error);   
+
+        if (!response.ok) {
+          console.warn("Server returned:", response.status);
+          setUser(null);
+          return;
         }
+
+        const text = await response.text();
+        if (!text) {
+          setUser(null);
+          setLoading(false)
+          return;
+        }
+
+        const data = JSON.parse(text);
+        setUser(data);
+      } catch (error) {
+        console.error("Error fetching current user:", error);
+        setUser(null);
+      }
+      finally{
+        setLoading(false)
+      }
     };
-        fetchCurrentUser();
-    }, []);
+    fetchCurrentUser();
+  }, []);
+
   const login = async (email, password) => {
     const res = await fetch(`${url}/users/login`, {
       method: "POST",
@@ -35,17 +54,12 @@ const AuthProvider = ({ children }) => {
     });
 
     const data = await res.json();
-    console.log(data)
     if (!res.ok) throw new Error(data.error);
 
-    // Store token in cookie
     Cookies.set("jwt_token", data.accessToken, { expires: 30 });
-
-    // Set user state
     setUser(data.user);
-
   };
-  
+
   const register = async (username, email, password) => {
     const res = await fetch(`${url}/users/register`, {
       method: "POST",
@@ -65,7 +79,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
+    <AuthContext.Provider value={{ user, login, register, logout,loading }}>
       {children}
     </AuthContext.Provider>
   );

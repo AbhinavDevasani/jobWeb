@@ -9,7 +9,12 @@ export const applyJob=async (req, res) => {
     if (!jobExists) {
       return res.status(404).json({ message: "Job not found" });
     }
-
+    const existingApplication = await Application.findOne({ jobId, email });
+    if (existingApplication) {
+      return res
+        .status(400)
+        .json({ message: "You have already applied for this job." });
+    }
     const application = new Application({ jobId, name, number,email, description });
     await application.save();
 
@@ -22,8 +27,24 @@ export const getApplicants= async (req, res) => {
   try {
     const applications = await Application.find()
       .populate("jobId", "title company location"); 
-      // 👆 Only bring selected job fields
     res.json(applications);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+// controller
+export const checkApplication = async (req, res) => {
+  try {
+    const { jobId } = req.params;
+    const { email } = req.query;
+
+    if (!email) {
+      return res.status(400).json({ message: "Email is required" });
+    }
+
+    const application = await Application.findOne({ jobId, email });
+
+    res.json({ applied: !!application });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

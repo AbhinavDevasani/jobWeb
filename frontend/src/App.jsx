@@ -11,7 +11,8 @@ import ErrorPage from './ErrorPage/ErrorPage'
 import LoginPage from './LoginPage/Login'
 import Accounts from './Accounts/Accounts'
 import ProtectedRoute from './ProtectedRoute'
-
+import ApplyJob from './ApplyJobPage/ApplyJob'
+import Applicants from './Applicants/Applicants'
 function App() {
   
   return (
@@ -27,6 +28,8 @@ function App() {
           <Route path="/jobs/:id" element={<ProtectedRoute><SingleJob></SingleJob></ProtectedRoute>}></Route>
           <Route path="*" element={<ErrorPage></ErrorPage>}></Route>
           <Route path="/account" element={<ProtectedRoute><Accounts></Accounts></ProtectedRoute>}></Route>
+          <Route path="/applyJob/:id" element={<ProtectedRoute><ApplyJob></ApplyJob></ProtectedRoute>}></Route>
+          <Route path="/applicants" element={<ProtectedRoute><Applicants></Applicants></ProtectedRoute>}></Route>
       </Routes>
       
     </>

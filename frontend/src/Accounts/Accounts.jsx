@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext} from "react";
 import AuthContext from "../Context/AuthContext";
 import { useNavigate } from "react-router";
 
 
 const Accounts = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout,loading } = useContext(AuthContext);
+ 
   const navigate = useNavigate();
   const handleLogout = () => {
     logout();
@@ -22,12 +23,18 @@ const Accounts = () => {
   const goToLoginPage=()=>{
     navigate("/")
   }
-
-  if (!user) {
+  if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+  if (!user) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <p className="text-gray-700 text-lg">You are not logged in.</p>
-        <button className="bg-blue-500 text-white" onClick={()=>{goToLoginPage()}}>Go to Login Page</button>
+        <button className="bg-blue-500 text-white p-2" onClick={()=>{goToLoginPage()}}>Go to Login Page</button>
       </div>
     );
   }
@@ -143,8 +150,7 @@ const Accounts = () => {
             </div>
         </nav>
         {/*the accounts details card */}
-        <div className="flex items-center justify-center min-h-screen bg-gray-200">
-        
+     <div className="flex items-center justify-center min-h-screen bg-gray-200"> 
         <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
             <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
             Account Details
@@ -173,6 +179,7 @@ const Accounts = () => {
             </button>
         </div>
         </div>
+       
         {/*Footer */}
         <footer className="bg-[#0F172A] text-gray-300 py-10 px-6 flex flex-col justify-center align-center">
             <div className="max-w-7xl mx-auto gap-8 ">

@@ -27,7 +27,7 @@ function SingleJob() {
         navigate("/jobs")
     }
     
-        const deleteJob=async()=>{
+    const deleteJob=async()=>{
         const jobDelete=await axios.delete(`https://jobweb-1.onrender.com/api/jobs/${id}`)
         console.log(jobDelete)
         alert("Job deleted successfuly")
@@ -36,7 +36,6 @@ function SingleJob() {
     const goToAccount=()=>{
         navigate("/account")
     }
-   
     return (
         <div>
             <nav className="flex w-full px-[4%] py-5 relative z-10 h-[5vh] sm:h-[15vh] items-center justify-between">
@@ -189,6 +188,7 @@ function SingleJob() {
                                 <p className='font-[600]'>₹{singleJob.salary}/monthly</p>  
                                 
                             </div>
+                            {user?.email!=="rahul@gmail.com"&&<button className='bg-blue-500 p-1 rounded-md mt-2 text-white cursor-pointer' onClick={()=>navigate(`/applyJob/${id}`)}>Apply Now</button>}
                         </div>
                         
                     </div>
