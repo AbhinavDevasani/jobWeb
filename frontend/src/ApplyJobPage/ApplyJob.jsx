@@ -26,7 +26,7 @@ function ApplyJob() {
             jobId: id, 
         };
         const response = await axios.post(
-          "http://localhost:8000/api/users/jobs/applyJob",
+          "https://jobweb-1.onrender.com/api/users/jobs/applyJob",
           payload
         );
         console.log("Job Applied Successfully", response.data);
@@ -75,7 +75,7 @@ function ApplyJob() {
 
                 
                 <div className="flex gap-4 ml-6 text-black">
-                <div className="flex items-center cursor-pointer">
+                <div className="flex items-center cursor-pointer" onClick={()=>goToHome()}>
                     <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -90,7 +90,7 @@ function ApplyJob() {
                         d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
                     />
                     </svg>
-                    <p className="hidden sm:block ml-1 text-gray-700 font-[600]" onClick={()=>goToHome()}>Home</p>
+                    <p className="hidden sm:block ml-1 text-gray-700 font-[600]" >Home</p>
                 </div>
 
                 <div
@@ -139,12 +139,13 @@ function ApplyJob() {
         alignItems="center"
         flexDirection="column"
         sx={{ mt: 5 }}
+        
         >
         <Typography variant="h4" fontWeight={700} gutterBottom>
             Apply for the Job
         </Typography>
 
-        <Paper elevation={3} sx={{ p: 4, width: "30%" }}>
+        <Paper elevation={3} sx={{ p: 4, width: {xs: "60%",sm: "60%",md: "30%",}, }}>
             <form onSubmit={formik.handleSubmit}>
             <Grid container spacing={3} direction="column">
                 {/* Name */}
@@ -239,7 +240,7 @@ function ApplyJob() {
                 <div className='flex flex-col items-center justify-center'>
                 <div className=" gap-2 mb-3 flex flex-col  items-center justify-center">
                     {/* Icon */}
-                    <div className="bg-blue-500 p-2 rounded-xl flex items-center justify-center w-[3vw]">
+                    <div className="bg-blue-500 p-2 rounded-xl flex items-center justify-center sm:w-[3vw] w-[10vw]">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

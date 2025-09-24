@@ -1,34 +1,43 @@
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
-import express from 'express'
-import dotenv from 'dotenv'
+import express from "express";
+import dotenv from "dotenv";
 import router1 from "./routes/jobRoute.js";
-import cors from 'cors'
-import router from './routes/userRoute.js'
+import cors from "cors";
+import router from "./routes/userRoute.js";
 import errorHandler from "./middleWare/errorHandler.js";
 import router2 from "./routes/applyRoute.js";
-const app=express()
-dotenv.config()
-app.use(cors({
-    origin: "https://jobweb-1.onrender.com",  // allow frontend origin
+import rateLimit from "express-rate-limit";
+const app = express();
+dotenv.config();
+app.use(
+  cors({
+    origin: "https://jobweb-1.onrender.com", // allow frontend origin
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"]  // include content-type
+    allowedHeaders: ["Content-Type", "Authorization"], // include content-type
+  })
+);
+const rateLimit=app.use(rateLimit({
+    windowMs:1*60*1000,
+    max:3
 }));
-app.use(bodyParser.json())
-app.use("/api",router1)
-app.use("/api/users",router)
-app.use("/api/users",router2)
-app.use(errorHandler)//Used for error handling
-const port=process.env.PORT||5000
-const uri=process.env.MONGO_URI
+
+app.use(bodyParser.json());
+app.use("/api", router1);
+app.use("/api/users",router);
+app.use("/api/users", router2);
+app.use(errorHandler); //Used for error handling
+const port = process.env.PORT || 5000;
+const uri = process.env.MONGO_URI;
 //Connection to mongoose
-mongoose.connect(uri)
-.then(()=>{
-    console.log("Server connected to mongo db")
-})
-.catch((err)=>{
-    console.log("DB connection failure",err)
-})
-app.listen(port,()=>{
-    console.log(`Server connected at port ${port}`)
-})
+mongoose
+  .connect(uri)
+  .then(() => {
+    console.log("Server connected to mongo db");
+  })
+  .catch((err) => {
+    console.log("DB connection failure", err);
+  });
+app.listen(port, () => {
+  console.log(`Server connected at port ${port}`);
+});

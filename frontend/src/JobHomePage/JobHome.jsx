@@ -96,7 +96,25 @@ function JobHome() {
                         <p className="hidden sm:block ml-1 text-gray-700 font-[600]">
                         Application
                         </p>
-                    </div>}      
+                    </div>} 
+                    {user?.email==="rahul@gmail.com" &&<div className="flex items-center cursor-pointer" onClick={() => navigate("/applicants")}>
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="size-5 text-gray-700"
+                    >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                    />
+                    </svg>
+                    <p className="hidden sm:block ml-1 text-gray-700 font-[600]">Applicants</p>
+                </div>     }
+                    
                 </div>
             </div>
 
@@ -145,7 +163,7 @@ function JobHome() {
                 <div className='flex flex-col items-center justify-center'>
                 <div className=" gap-2 mb-3 flex flex-col  items-center justify-center">
                    
-                    <div className="bg-blue-500 p-2 rounded-xl flex items-center justify-center w-[3vw]">
+                    <div className="bg-blue-500 p-2 rounded-xl flex items-center justify-center sm:w-[3vw] w-[10vw]">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

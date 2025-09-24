@@ -29,7 +29,7 @@ function App() {
           <Route path="*" element={<ErrorPage></ErrorPage>}></Route>
           <Route path="/account" element={<ProtectedRoute><Accounts></Accounts></ProtectedRoute>}></Route>
           <Route path="/applyJob/:id" element={<ProtectedRoute><ApplyJob></ApplyJob></ProtectedRoute>}></Route>
-          <Route path="/applicants" element={<ProtectedRoute><Applicants></Applicants></ProtectedRoute>}></Route>
+          <Route path="/applicants"  element={<ProtectedRoute onlyRahul={true}><Applicants></Applicants></ProtectedRoute>}></Route>
       </Routes>
       
     </>

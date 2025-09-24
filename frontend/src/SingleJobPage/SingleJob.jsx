@@ -39,7 +39,7 @@ function SingleJob() {
     return (
         <div>
             <nav className="flex w-full px-[4%] py-5 relative z-10 h-[5vh] sm:h-[15vh] items-center justify-between">
-                <div className="flex items-center cursor-pointer">
+                <div className="flex items-center cursor-pointer"  onClick={()=>goToHome()}>
                     <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -74,7 +74,7 @@ function SingleJob() {
                             d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
                         />
                         </svg>
-                        <p className="hidden sm:block ml-1 text-gray-700 font-[600] " onClick={()=>goToHome()}>Home</p>
+                        <p className="hidden sm:block ml-1 text-gray-700 font-[600] ">Home</p>
                     </div>
 
                     <div
@@ -171,7 +171,7 @@ function SingleJob() {
                             </svg>
                             <p className='text-[18px] ml-2 font-[500]'>{singleJob.company}</p>
                         </div>
-                        <p className='border-1 w-[5vw] text-center rounded-lg text-black text-[14px] font-[500] border-gray-300'> {singleJob.jobType}</p>
+                        <p className='border-1 sm:w-[5vw] text-center rounded-lg text-black text-[14px] font-[500] border-gray-300 w-[19vw]'> {singleJob.jobType}</p>
                         <div className='flex gap-10 mt-3'>
                             <div>
                                 <p className='ml-6'>Location</p>
@@ -193,28 +193,28 @@ function SingleJob() {
                         
                     </div>
                 </div>
-                <div className='flex gap-3'>
+                <div className='flex gap-3 sm:px-[0px] px-[20px]'>
                     {/* Job Description Card */}
-                    <div className="bg-white shadow-md rounded-lg p-6 w-[30vw]">
+                    <div className="bg-white shadow-md rounded-lg p-6 sm:w-[30vw] w-[40vw]">
                         <div className='flex'>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="sm:size-6 size-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                             </svg>
 
-                            <h2 className="text-xl font-semibold text-gray-800 mb-4">Job Description</h2>
+                            <h2 className="sm:text-xl font-semibold text-gray-800 mb-4 text-[13px]  ">Job Description</h2>
                         </div>
                         
-                        <p className="text-gray-700 leading-relaxed">
+                        <p className="text-gray-700 sm:leading-relaxed text-[12px] sm:text-[17px]">
                         {singleJob.description}
                         </p>
                     </div>
                     {/*Posted At card */}
-                    <div className="bg-white shadow-md rounded-lg p-6 w-[30vw] ">
+                    <div className="bg-white shadow-md rounded-lg p-6 sm:w-[30vw] w-[40vw] ">
                         <div className='flex'>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 mt-[3px]">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="sm:size-6 size-4 mt-[3px]">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                             </svg>
-                            <h2 className="text-xl font-semibold text-gray-800 mb-4">Posted At</h2>
+                            <h2 className="sm:text-xl font-semibold text-gray-800 mb-4 text-[13px]">Posted At</h2>
                         </div>
                         <p className="text-gray-700 leading-relaxed">
                             {singleJob.postedAt 
@@ -228,7 +228,7 @@ function SingleJob() {
                         
                     </div>
                 </div>
-                <div className="bg-white shadow-md rounded-lg p-6 w-[30vw]">
+                <div className="bg-white shadow-md rounded-lg p-6 sm:w-[30vw] w-[70vw] ml-5 sm:ml-[0px]">
                     <h2 className="text-xl font-semibold text-gray-800 mb-4">
                         Contact Information
                     </h2>
@@ -275,14 +275,14 @@ function SingleJob() {
                         <div className='flex flex-col items-center justify-center'>
                         <div className=" gap-2 mb-3 flex flex-col  items-center justify-center">
                            
-                            <div className="bg-blue-500 p-2 rounded-xl flex items-center justify-center w-[3vw]">
+                            <div className="bg-blue-500 p-2 rounded-xl flex items-center justify-center sm:w-[3vw] w-[10vw]">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 strokeWidth={1.5}
                                 stroke="white"
-                                className="w-6 h-6"
+                                className="sm:w-6 sm:h-6 "
                             >
                                 <path
                                 strokeLinecap="round"
@@ -299,7 +299,7 @@ function SingleJob() {
                         <p className="text-sm text-gray-400">
                             Corporate Part-time Jobs
                         </p>
-                        <p className="mt-2 text-sm text-gray-400">
+                        <p className="mt-2 text-sm text-gray-400 text-center">
                             Connect with opportunities across India. Find part-time jobs that fit your skills and schedule.
                         </p>
                         </div>
