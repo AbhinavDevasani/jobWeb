@@ -20,7 +20,7 @@ export const validateToken = async (req, res, next) => {
       return res.status(401).json({ message: "User not found" });
     }
 
-    req.user = user; // 👈 attach user to request
+    req.user = user; 
     next();
   } catch (err) {
     console.error(err);

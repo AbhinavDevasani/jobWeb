@@ -47,7 +47,7 @@ export const loginUser = asyncHandler(async (req, res) => {
         },
       },
       process.env.ACCESS_TOKEN_STRING,
-      { expiresIn: "1d" } 
+      { expiresIn: "30d" } 
     );
 
     

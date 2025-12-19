@@ -7,7 +7,7 @@ import cors from "cors";
 import router from "./routes/userRoute.js";
 import errorHandler from "./middleWare/errorHandler.js";
 import router2 from "./routes/applyRoute.js";
-import rateLimit from "express-rate-limit";
+
 const app = express();
 dotenv.config();
 app.use(
@@ -17,10 +17,7 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"], // include content-type
   })
 );
-const rateLimit=app.use(rateLimit({
-    windowMs:1*60*1000,
-    max:3
-}));
+
 
 app.use(bodyParser.json());
 app.use("/api", router1);
