@@ -26,7 +26,7 @@ function JobList() {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `https://jobweb-1.onrender.com/api/jobs?page=${currentPage}&limit=10&search=${debouncedSearch}`
+          `${import.meta.env.VITE_BACKEND_URL}/api/jobs?page=${currentPage}&limit=10&search=${debouncedSearch}`
         )
         const data = await response.data
        

@@ -4,7 +4,7 @@ import AuthContext from "./AuthContext";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const url = "https://jobweb-1.onrender.com/api";
+  const url = `${import.meta.env.VITE_BACKEND_URL}/api`;
    const [loading, setLoading] = useState(true)  // loader state
   useEffect(() => {
     const fetchCurrentUser = async () => {

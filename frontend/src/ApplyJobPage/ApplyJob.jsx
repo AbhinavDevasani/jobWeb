@@ -26,7 +26,7 @@ function ApplyJob() {
             jobId: id, 
         };
         const response = await axios.post(
-          "https://jobweb-1.onrender.com/api/users/jobs/applyJob",
+          `${import.meta.env.VITE_BACKEND_URL}/api/users/jobs/applyJob`,
           payload
         );
         console.log("Job Applied Successfully", response.data);

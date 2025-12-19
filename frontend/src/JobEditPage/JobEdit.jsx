@@ -31,7 +31,7 @@ function JobEdit() {
         onSubmit: async (values, { resetForm }) => {
         try {
             const response = await axios.put(
-            `https://jobweb-1.onrender.com/api/jobs/${id}`,
+            `${import.meta.env.VITE_BACKEND_URL}/api/jobs/${id}`,
             values
             );
             console.log(response)
@@ -46,7 +46,7 @@ function JobEdit() {
     useEffect(() => {
     const fetchJob = async () => {
       try {
-        const response = await axios.get(`https://jobweb-1.onrender.com/api/jobs/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/jobs/${id}`);
          
         formik.setValues({
           title: response.data.data.title || "",
