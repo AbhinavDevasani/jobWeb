@@ -3,7 +3,10 @@ import Job from '../model/jobModel.js'
 export const applyJob=async (req, res) => {
   try {
     const { jobId, name,number, email, description } = req.body;
-
+    const resume = req.file?.path;
+    if (!resume) {
+      return res.status(400).json({ message: "Resume is required" });
+    }
     
     const jobExists = await Job.findById(jobId);
     if (!jobExists) {
@@ -15,7 +18,7 @@ export const applyJob=async (req, res) => {
         .status(400)
         .json({ message: "You have already applied for this job." });
     }
-    const application = new Application({ jobId, name, number,email, description });
+    const application = new Application({ jobId, name, number,email, description,resume, });
     await application.save();
 
     res.status(201).json({ message: "Application submitted successfully", application });

@@ -21,6 +21,11 @@ const applySchema=new mongoose.Schema({
     appliedAt:{
         type:Date,
         default:Date.now()
-    }
+    },
+    resume: {
+        type: String,
+        required: true,
+    },
+
 })
 export default mongoose.model("Application",applySchema,"Applications")
