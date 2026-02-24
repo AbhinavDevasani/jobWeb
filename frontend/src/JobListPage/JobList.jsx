@@ -1,16 +1,19 @@
-import React, { useState,useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 import AuthContext from '../Context/AuthContext'
+
+import Footer from '../Footer'
+import { Link } from 'react-router'
 function JobList() {
-    const navigate = useNavigate()
-    const [jobList, setJobList] = useState([])
-    const [currentPage, setCurrentPage] = useState(1)
-    const [totalPages, setTotalPages] = useState(1)
-    const [search, setSearch] = useState("")   // search state
-    const [loading, setLoading] = useState(false)  // loader state
-     const [debouncedSearch, setDebouncedSearch] = useState("")
-  
+  const navigate = useNavigate()
+  const [jobList, setJobList] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const [search, setSearch] = useState("")   // search state
+  const [loading, setLoading] = useState(false)  // loader state
+  const [debouncedSearch, setDebouncedSearch] = useState("")
+
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(search);
@@ -29,7 +32,7 @@ function JobList() {
           `${import.meta.env.VITE_BACKEND_URL}/api/jobs?page=${currentPage}&limit=10&search=${debouncedSearch}`
         )
         const data = await response.data
-       
+
         setJobList(data.jobs)
         setTotalPages(data.totalPages)
         setLoading(false)
@@ -39,17 +42,17 @@ function JobList() {
     }
     getData()
   }, [currentPage, debouncedSearch])
-  const {user}=useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   const goToForm = () => {
     navigate("/jobs/new")
   }
-  const goToJobEdit=(id)=>{
+  const goToJobEdit = (id) => {
     navigate(`/jobEdit/${id}`)
   }
-  const goToHome=()=>{
+  const goToHome = () => {
     navigate("/home")
   }
-  const goToSingleView=(id)=>{
+  const goToSingleView = (id) => {
     navigate(`/jobs/${id}`)
   }
   // handle search
@@ -57,135 +60,135 @@ function JobList() {
     setSearch(e.target.value)
     setCurrentPage(1) // reset to first page whenever searching
   }
-  const goToAccount=()=>{
+  const goToAccount = () => {
     navigate("/account")
   }
   return (
     <div>
-       <nav className="flex w-full px-[4%] py-5 relative z-10 h-[5vh] sm:h-[15vh] items-center justify-between bg-gray-100">
-            
-            <div className="flex items-center">
-                <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-briefcase w-6 h-6 text-white bg-blue-700 p-1 rounded-xl"
-                >
-                <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                <rect width="20" height="14" x="2" y="6" rx="2"></rect>
-                </svg>
-                <p className="font-[700] text-[20px] ml-2 text-gray-800">SARKAR JOBS</p>
+      <nav className="flex w-full px-[4%] py-5 relative z-10 h-[5vh] sm:h-[15vh] items-center justify-between bg-gray-100">
 
-                
-                <div className="flex gap-4 ml-6 text-black">
-                <div className="flex items-center cursor-pointer" onClick={()=>goToHome()}>
-                    <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-5 text-gray-700"
-                    >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-                    />
-                    </svg>
-                    <p className="hidden sm:block ml-1 text-gray-700 font-[600]" >Home</p>
-                </div>
+        <div className="flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-briefcase w-6 h-6 text-white bg-blue-700 p-1 rounded-xl"
+          >
+            <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            <rect width="20" height="14" x="2" y="6" rx="2"></rect>
+          </svg>
+          <p className="font-[700] text-[20px] ml-2 text-gray-800">SARKAR JOBS</p>
 
-                <div
-                    className="flex items-center "
-                    
-                >
-                    <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-5 text-gray-700"
-                    >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                    />
-                    </svg>
-                    <p className="hidden sm:block ml-1 text-gray-700 font-[600]">Jobs</p>
-                </div>
-                  {user?.email==="rahul@gmail.com"&&<div
-                      className="flex items-center cursor-pointer"
-                      onClick={()=>goToForm()}
-                  >
-                      <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="size-5 text-gray-700"
-                      >
-                      <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
-                      />
-                      </svg>
-                      <p className="hidden sm:block ml-1 text-gray-700 font-[600]">
-                      Application
-                      </p>
-                  </div>}
-                  {user?.email==="rahul@gmail.com" &&<div className="flex items-center cursor-pointer" onClick={() => navigate("/applicants")}>
-                    <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-5 text-gray-700"
-                    >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                    />
-                    </svg>
-                    <p className="hidden sm:block ml-1 text-gray-700 font-[600]">Applicants</p>
-                  </div>}
-                </div>
-            </div>
 
-           
-            <div
-                className="flex items-center gap-2 cursor-pointer"
-                onClick={() => goToAccount()}
-            >
-                <svg
+          <div className="flex gap-4 ml-6 text-black">
+            <div className="flex items-center cursor-pointer" onClick={() => goToHome()}>
+              <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className="w-6 h-6 text-gray-700"
-                >
+                className="size-5 text-gray-700"
+              >
                 <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.25a8.25 8.25 0 0 1 15 0v.75H4.5v-.75Z"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
                 />
-                </svg>
-                <p className="hidden sm:block text-gray-700 font-[600]">Account</p>
+              </svg>
+              <p className="hidden sm:block ml-1 text-gray-700 font-[600]" >Home</p>
             </div>
-        </nav>
+
+            <div
+              className="flex items-center "
+
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-5 text-gray-700"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                />
+              </svg>
+              <p className="hidden sm:block ml-1 text-gray-700 font-[600]">Jobs</p>
+            </div>
+            {user?.email === "rahul@gmail.com" && <div
+              className="flex items-center cursor-pointer"
+              onClick={() => goToForm()}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-5 text-gray-700"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+                />
+              </svg>
+              <p className="hidden sm:block ml-1 text-gray-700 font-[600]">
+                Application
+              </p>
+            </div>}
+            {user?.email === "rahul@gmail.com" && <div className="flex items-center cursor-pointer" onClick={() => navigate("/applicants")}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-5 text-gray-700"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                />
+              </svg>
+              <p className="hidden sm:block ml-1 text-gray-700 font-[600]">Applicants</p>
+            </div>}
+          </div>
+        </div>
+
+
+        <div
+          className="flex items-center gap-2 cursor-pointer"
+          onClick={() => goToAccount()}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6 text-gray-700"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.25a8.25 8.25 0 0 1 15 0v.75H4.5v-.75Z"
+            />
+          </svg>
+          <p className="hidden sm:block text-gray-700 font-[600]">Account</p>
+        </div>
+      </nav>
       {/*Search Input */}
       <div className="flex justify-center my-4">
         <input
@@ -198,52 +201,52 @@ function JobList() {
       </div>
 
       {/* Job List */}
-      {loading?(
+      {loading ? (
         <div className="flex justify-center items-center w-full my-10">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
-        </div>):(
-            <div className='flex flex-wrap gap-4 justify-center'>
-        {jobList.map((item,id) => {
-          return (
-            
-                <div key={id} className='bg-white p-6 my-4 rounded-lg shadow-md border border-gray-200 sm:w-[30vw] w-[80vw]'>
+          <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
+        </div>) : (
+        <div className='flex flex-wrap gap-4 justify-center'>
+          {jobList.map((item, id) => {
+            return (
+
+              <div key={id} className='bg-white p-6 my-4 rounded-lg shadow-md border border-gray-200 sm:w-[30vw] w-[80vw]'>
                 <div className="flex justify-between items-start mb-2">
-                    <div className="flex items-center justify-between w-[100vw]">
+                  <div className="flex items-center justify-between w-[100vw]">
                     <p className='sm:text-xl font-semibold'>{item.title}</p>
-                    {user?.email==="rahul@gmail.com"&&
-                    <svg xmlns="http://www.w3.org/2000/svg" onClick={()=>goToJobEdit(item._id)} fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="sm:size-6 cursor-pointer size-5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                    </svg>}
-                    
-                    </div>
+                    {user?.email === "rahul@gmail.com" &&
+                      <svg xmlns="http://www.w3.org/2000/svg" onClick={() => goToJobEdit(item._id)} fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="sm:size-6 cursor-pointer size-5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                      </svg>}
+
+                  </div>
                 </div>
                 <div className="flex justify-between">
-                    <div className='flex'>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 mt-[3px] ">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
-                        </svg>
-                        <p className='text-[19px]  text-gray-700 font-[500] ml-1 '>{item.company}</p>
-                    </div>
-                    <p className="border-1 rounded-lg sm:text-[10px] sm:p-1 sm:w-[4vw] p-1 text-center bg-green-200 border-green-300 text-green-700 text-[8px] w-[15vw] sm:mt-[0px] mt-2">{item.jobType}</p>
+                  <div className='flex'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6 mt-[3px] ">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                    </svg>
+                    <p className='text-[19px]  text-gray-700 font-[500] ml-1 '>{item.company}</p>
+                  </div>
+                  <p className="border-1 rounded-lg sm:text-[10px] sm:p-1 sm:w-[4vw] p-1 text-center bg-green-200 border-green-300 text-green-700 text-[8px] w-[15vw] sm:mt-[0px] mt-2">{item.jobType}</p>
                 </div>
                 <p className="mt-4 text-gray-700">{item.description}</p>
                 <div className="flex mt-3 justify-between">
-                    <div className='flex '>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="sm:size-6 size-5">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-                        </svg>
-                        <p className='text-[13px] sm:text-[16px]'>{item.location}</p>
-                    </div>
-                    <p className='text-[14px] sm:text-[16px] '>₹{item.salary}/ monthly</p>
+                  <div className='flex '>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="sm:size-6 size-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                    </svg>
+                    <p className='text-[13px] sm:text-[16px]'>{item.location}</p>
+                  </div>
+                  <p className='text-[14px] sm:text-[16px] '>₹{item.salary}/ monthly</p>
                 </div>
-                <button className="bg-blue-500 text-white p-2 rounded-md mt-2 flex justify-self-end cursor-pointer" onClick={()=>goToSingleView(item._id)}>View Details</button>
-                </div>
-            
-          )
-        })}
-            </div>
-        )
+                <button className="bg-blue-500 text-white p-2 rounded-md mt-2 flex justify-self-end cursor-pointer" onClick={() => goToSingleView(item._id)}>View Details</button>
+              </div>
+
+            )
+          })}
+        </div>
+      )
       }
       {/* Pagination */}
       <div className="flex justify-center gap-4 mt-6">
@@ -263,52 +266,7 @@ function JobList() {
           Next
         </button>
       </div>
-      {/*Footer */}
-      <footer className="bg-[#0F172A] text-gray-300 py-10 px-6 flex flex-col justify-center align-center mt-10">
-      <div className="max-w-7xl mx-auto gap-8 ">
-
-        
-        <div className='flex flex-col items-center justify-center'>
-          <div className=" gap-2 mb-3 flex flex-col  items-center justify-center">
-           
-            <div className="bg-blue-500 p-2 rounded-xl flex items-center justify-center sm:w-[3vw] w-[10vw]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="white"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M20.25 7.5l-.625 10.63a2.25 2.25 0 01-2.247 2.12H6.622a2.25 2.25 0 01-2.247-2.12L3.75 7.5m16.5 0a2.25 2.25 0 00-2.25-2.25H6a2.25 2.25 0 00-2.25 2.25m16.5 0H3.75"
-                />
-              </svg>
-            </div>
-
-            <h2 className="text-white font-semibold text-lg">
-              SarkarJobs
-            </h2>
-          </div>
-          <p className="text-sm text-gray-400">
-            Corporate Part-time Jobs
-          </p>
-          <p className="mt-2 text-sm text-gray-400">
-            Connect with  opportunities across India. Find part-time jobs that fit your skills and schedule.
-          </p>
-        </div>
-
-        
-        
-      </div>
-
-      
-      <div className="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-500">
-        © 2025 SarkarJobsIndia. All rights reserved.
-      </div>
-    </footer>
+      <Footer />
     </div>
   )
 }

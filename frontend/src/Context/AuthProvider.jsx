@@ -5,7 +5,7 @@ import AuthContext from "./AuthContext";
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const url = `${import.meta.env.VITE_BACKEND_URL}/api`;
-   const [loading, setLoading] = useState(true)  // loader state
+  const [loading, setLoading] = useState(true)  // loader state
   useEffect(() => {
     const fetchCurrentUser = async () => {
       const token = Cookies.get("jwt_token");
@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
         console.error("Error fetching current user:", error);
         setUser(null);
       }
-      finally{
+      finally {
         setLoading(false)
       }
     };
@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
     });
 
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error);
+    if (!res.ok) throw new Error(data.message || data.error || "Login failed");
 
     Cookies.set("jwt_token", data.accessToken, { expires: 30 });
     setUser(data.user);
@@ -69,7 +69,7 @@ const AuthProvider = ({ children }) => {
 
     if (!res.ok) {
       const data = await res.json();
-      throw new Error(data.error);
+      throw new Error(data.message || data.error || "Registration failed");
     }
   };
 
@@ -79,7 +79,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout,loading }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
