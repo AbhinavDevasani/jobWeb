@@ -12,16 +12,21 @@ const app = express();
 dotenv.config();
 app.use(
   cors({
-    origin: "https://jobweb-1.onrender.com", // allow frontend origin
+    origin: ["https://jobweb-1.onrender.com", "http://localhost:5173"], // allow frontend origin
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"], // include content-type
   })
 );
 
+app.use((req, res, next) => {
+  next();
+});
+
+app.use("/uploads", express.static("uploads"));
 
 app.use(bodyParser.json());
 app.use("/api", router1);
-app.use("/api/users",router);
+app.use("/api/users", router);
 app.use("/api/users", router2);
 app.use(errorHandler); //Used for error handling
 const port = process.env.PORT || 5000;

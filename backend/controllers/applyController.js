@@ -4,6 +4,8 @@ export const applyJob=async (req, res) => {
   try {
     const { jobId, name,number, email, description } = req.body;
     const resume = req.file?.path;
+    console.log("BODY:", req.body); 
+    console.log("FILE:", req.file);
     if (!resume) {
       return res.status(400).json({ message: "Resume is required" });
     }

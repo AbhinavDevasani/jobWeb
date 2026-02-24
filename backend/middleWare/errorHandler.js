@@ -1,32 +1,32 @@
-const constants={
-    VALIDATION_ERROR : 400,
-    UNAUTHORIZED:401,
-    FORBIDDEN:403,
+const constants = {
+    VALIDATION_ERROR: 400,
+    UNAUTHORIZED: 401,
+    FORBIDDEN: 403,
     NOT_FOUND: 404
 }
-const errorHandler=(err,req,res,next)=>{
+const errorHandler = (err, req, res, next) => {
 
-    const statusCode=err.statusCode||500
-    switch(statusCode){
+    const statusCode = res.statusCode ? res.statusCode : 500;
+    switch (statusCode) {
         case constants.FORBIDDEN:
             res.status(statusCode).json({
-                title:"FORBIDDEN",
-                message:err.message,
-                stackTrace:err.stack
+                title: "FORBIDDEN",
+                message: err.message,
+                stackTrace: err.stack
             });
             break;
         case constants.NOT_FOUND:
-            res.staus(statusCode).json({
-                title:"NOT FOUND",
-                message:err.message,
-                stackTrace:err.stack
+            res.status(statusCode).json({
+                title: "NOT FOUND",
+                message: err.message,
+                stackTrace: err.stack
             });
             break;
         case constants.UNAUTHORIZED:
             res.status(statusCode).json({
-                title:"UNAUTHORIZED",
-                message:err.message,
-                stackTrace:err.stack
+                title: "UNAUTHORIZED",
+                message: err.message,
+                stackTrace: err.stack
             });
             break;
         case constants.VALIDATION_ERROR:
