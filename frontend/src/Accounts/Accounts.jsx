@@ -12,15 +12,7 @@ const Accounts = () => {
     logout();
     navigate("/");
   };
-  const goToHome = () => {
-    navigate("/home")
-  }
-  const goToForm = () => {
-    navigate("/jobs/new")
-  }
-  const goToListPage = () => {
-    navigate("/jobs")
-  }
+  
   const goToLoginPage = () => {
     navigate("/")
   }

@@ -46,15 +46,11 @@ function JobList() {
     getData()
   }, [currentPage, debouncedSearch])
   const { user } = useContext(AuthContext)
-  const goToForm = () => {
-    navigate("/jobs/new")
-  }
+  
   const goToJobEdit = (id) => {
     navigate(`/jobEdit/${id}`)
   }
-  const goToHome = () => {
-    navigate("/home")
-  }
+  
   const goToSingleView = (id) => {
     navigate(`/jobs/${id}`)
   }
@@ -63,9 +59,7 @@ function JobList() {
     setSearch(e.target.value)
     setCurrentPage(1) // reset to first page whenever searching
   }
-  const goToAccount = () => {
-    navigate("/account")
-  }
+  
   return (
     <div>
       <Navbar />

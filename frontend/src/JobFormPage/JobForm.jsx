@@ -38,15 +38,6 @@ function JobForm() {
         },
     });
     const navigate = useNavigate()
-    const goToListPage = () => {
-        navigate("/jobs")
-    }
-    const goToHome = () => {
-        navigate("/home")
-    }
-    const goToAccount = () => {
-        navigate("/account")
-    }
     const submittedJob = () => {
         alert("Job created successfully")
         navigate("/jobs")
@@ -59,7 +50,8 @@ function JobForm() {
                 justifyContent="center"
                 alignItems="center"
                 flexDirection="column"
-                sx={{ mt: 5 }}
+                sx={{ mt: 5,  mb :4 }}
+
             >
                 <Typography variant="h4" fontWeight={700} gutterBottom>
                     Post a New Job
@@ -177,7 +169,7 @@ function JobForm() {
                                 >
                                     Submit
                                 </Button>
-                            </Grid>
+                            </Grid>                     
                         </Grid>
                     </form>
                 </Paper>

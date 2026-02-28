@@ -58,15 +58,7 @@ function ApplyJob() {
     });
 
     const navigate = useNavigate()
-    const goToListPage = () => {
-        navigate("/jobs")
-    }
-    const goToHome = () => {
-        navigate("/home")
-    }
-    const goToAccount = () => {
-        navigate("/account")
-    }
+    
 
     return (
         <div>

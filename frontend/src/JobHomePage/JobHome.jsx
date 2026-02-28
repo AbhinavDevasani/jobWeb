@@ -36,7 +36,8 @@ function JobHome() {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col items-center justify-center h-[80vh]  px-4 text-center bg-white">
+      <div className='flex justify-between'>
+      <div className="flex flex-col justify-center h-[80vh]  px-4 bg-white text-center items-center">
         <p className='text-blue-600 font-semibold'>#1 Job Portal</p>
         <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
           Find Your Dream{" "}
@@ -48,9 +49,10 @@ function JobHome() {
           Discover thousands of part-time and full time opportunities across India.
           Secure your future with trusted employment.
         </p>
-        <button onClick={goToJobs} className="bg-blue-600 text-white p-4 rounded-md hover:bg-blue-700 transition mt-4 ">Explore Jobs</button>
+        <button onClick={goToJobs} className="bg-blue-600 text-white p-4 rounded-md hover:bg-blue-700 transition mt-4 w-fit">Explore Jobs</button>
       </div>
-
+      <img src="https://www.sapphiresolutions.net/images/job_new_portfolio/job_portal_about.svg" className='px-14'/>
+      </div>
       <img src="https://res.cloudinary.com/dudjdf428/image/upload/v1772000989/ChatGPT_Image_Feb_24_2026_03_13_12_PM_1_xw0ume.png" className='h-[50vh]' />
       <div className="w-full bg-blue-500 py-16">
         <div className="max-w-6xl mx-auto px-6 text-center">

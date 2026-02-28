@@ -8,10 +8,10 @@ import Footer from '../Footer'
 import Navbar from '../Navbar'
 function SingleJob() {
     const [singleJob, setSingleJob] = useState([])
-    const [hasApplied, setHasApplied] = useState(false) // Added state for application status
+    const [hasApplied, setHasApplied] = useState(false) 
     const { id } = useParams()
     const navigate = useNavigate()
-    //use Effect to get single detailed data
+    
     useEffect(() => {
         const getdata = async () => {
             const data = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/jobs/${id}`)
@@ -22,7 +22,7 @@ function SingleJob() {
     }, [])
     const { user } = useContext(AuthContext)
 
-    // Check application status
+    
     useEffect(() => {
         const checkStatus = async () => {
             if (user?.email) {
@@ -37,12 +37,7 @@ function SingleJob() {
         checkStatus();
     }, [id, user]);
 
-    const goToForm = () => {
-        navigate("/jobs/new")
-    }
-    const goToHome = () => {
-        navigate("/home")
-    }
+    
     const goToListPage = () => {
         navigate("/jobs")
     }
@@ -53,13 +48,11 @@ function SingleJob() {
         alert("Job deleted successfuly")
         navigate("/jobs")
     }
-    const goToAccount = () => {
-        navigate("/account")
-    }
+   
     return (
         <div>
             <Navbar />
-            <div className="max-w-4xl mx-auto mt-10 space-y-6">
+            <div className="max-w-4xl mx-auto mt-10 space-y-6 mb-4">
                 <h2 className="text-[30px] font-semibold text-gray-800 mb-4">Job Overview</h2>
                 <div className='flex justify-between'>
                     <div className='flex' onClick={() => goToListPage()}>

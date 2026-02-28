@@ -67,18 +67,10 @@ function JobEdit() {
         fetchJob();
     }, [id]);
 
-    const goToForm = () => {
-        navigate("/jobs/new")
-    }
     const goToListPage = () => {
         navigate("/jobs")
     }
-    const goToHome = () => {
-        navigate("/home")
-    }
-    const goToAccount = () => {
-        navigate("/account")
-    }
+    
     return (
         <div>
             <Navbar />

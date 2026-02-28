@@ -2,27 +2,38 @@ import asyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import User from "../model/userModel.js";
+import Profile from "../model/profileModel.js";
 
-// Register User
-// POST
 export const registerUser = asyncHandler(async (req, res) => {
-  const { username, email, password } = req.body;
-
+  const { username, email, password } = req.body
   if (!username || !email || !password) {
-    res.status(400);
-    throw new Error("All Fields are required");
+    res.status(400)
+    throw new Error("All Fields are required")
   }
-
-  //hashing the password
+  const userExists = await User.findOne({ email })
+  if (userExists) {
+    res.status(400);
+    throw new Error("User already exists")
+  }
   const hashPassword = await bcrypt.hash(password, 10);
-  //creating a new user
   const newUser = await User.create({
     username,
     email,
     password: hashPassword,
   });
-  res.json(newUser);
-});
+  await Profile.create({
+  user: newUser._id,
+  skills: [],
+  experience: [],
+  education: []
+  });
+
+  res.status(201).json({
+    _id: newUser._id,
+    username: newUser.username,
+    email: newUser.email,
+  })
+})
 //login User
 export const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;

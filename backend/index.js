@@ -7,7 +7,7 @@ import cors from "cors";
 import router from "./routes/userRoute.js";
 import errorHandler from "./middleWare/errorHandler.js";
 import router2 from "./routes/applyRoute.js";
-
+import router3 from "./routes/profileRoute.js";
 const app = express();
 dotenv.config();
 app.use(
@@ -28,6 +28,7 @@ app.use(bodyParser.json());
 app.use("/api", router1);
 app.use("/api/users", router);
 app.use("/api/users", router2);
+app.use("/api/profile", router3);
 app.use(errorHandler); //Used for error handling
 const port = process.env.PORT || 5000;
 const uri = process.env.MONGO_URI;

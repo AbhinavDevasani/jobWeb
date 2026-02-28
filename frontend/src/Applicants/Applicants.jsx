@@ -24,20 +24,7 @@ function JobList() {
   }, [])
   console.log(applicants)
   const { user } = useContext(AuthContext)
-  const goToForm = () => {
-    navigate("/jobs/new")
-  }
-
-  const goToHome = () => {
-    navigate("/home")
-  }
-
-  const goToAccount = () => {
-    navigate("/account")
-  }
-  const goToListPage = () => {
-    navigate("/jobs")
-  }
+  
   return (
     <div>
       <Navbar />

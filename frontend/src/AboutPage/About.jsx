@@ -6,15 +6,24 @@ function About() {
     return (
         <div>
             <Navbar />
-            <div className="w-full bg-blue-500 py-20 px-6 sm:px-12 text-center text-white">
-                <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-                    About <span className="text-indigo-900 border-b-4 border-indigo-900">Sarkar Jobs</span>
-                </h1>
-                <p className="text-lg sm:text-xl max-w-3xl mx-auto opacity-90">
-                    We are dedicated to connecting talented professionals with India's best organizations.
-                    Our mission is to simplify the job search process, ensuring transparency, trust,
-                    and opportunity for every career stage.
-                </p>
+            <div className="w-full bg-blue-500 py-16 px-6 sm:px-12 flex flex-col md:flex-row items-center justify-center gap-10 text-white">
+                <div className="md:w-1/2 flex justify-center md:justify-end">
+                    <img
+                        src="https://res.cloudinary.com/dudjdf428/image/upload/v1772014435/Screenshot_2026-02-25_154204-removebg-preview_bbms66.png"
+                        alt="About Us Hero"
+                        className="w-full max-w-md md:max-w-lg rounded-2xl  "
+                    />
+                </div>
+                <div className="md:w-1/2 text-center md:text-left">
+                    <h1 className="text-4xl sm:text-5xl font-bold mb-6">
+                        About <span className="">Sarkar Jobs</span>
+                    </h1>
+                    <p className="text-lg sm:text-xl max-w-xl mx-auto md:mx-0 opacity-90 leading-relaxed">
+                        We are dedicated to connecting talented professionals with India's best organizations.
+                        Our mission is to simplify the job search process, ensuring transparency, trust,
+                        and opportunity for every career stage.
+                    </p>
+                </div>
             </div>
             <div className="max-w-6xl mx-auto px-6 py-16">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
