@@ -89,3 +89,32 @@ export const addExperience = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
+export const addEducation = async (req, res) => {
+  try {
+    const { institution, degree, startYear, endYear } = req.body;
+
+    if (!institution || !degree) {
+      return res.status(400).json({ message: "Institution and degree are required" });
+    }
+
+    let profile = await Profile.findOne({ user: req.user._id });
+
+    if (!profile) {
+      profile = new Profile({ user: req.user._id });
+    }
+
+    profile.education.push({
+      institution,
+      degree,
+      startYear,
+      endYear
+    });
+
+    await profile.save();
+
+    res.json(profile.education);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
