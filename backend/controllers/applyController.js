@@ -4,11 +4,6 @@ export const applyJob = async (req, res) => {
   try {
     const { jobId, name, number, email, description, profileResume } = req.body;
     const resume = req.file?.path || profileResume;
-
-    console.log("BODY:", req.body);
-    console.log("FILE:", req.file);
-    console.log("RESUME:", resume);
-
     if (!resume) {
       return res.status(400).json({ message: "Resume is required" });
     }
@@ -38,7 +33,7 @@ export const applyJob = async (req, res) => {
 
     res.status(201).json({ message: "Application submitted successfully", application });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ message: err.message, error: err.message });
   }
 };
 export const getApplicants = async (req, res) => {
@@ -47,7 +42,7 @@ export const getApplicants = async (req, res) => {
       .populate("jobId", "title company location");
     res.json(applications);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ message: err.message, error: err.message });
   }
 };
 // controller
@@ -64,6 +59,6 @@ export const checkApplication = async (req, res) => {
 
     res.json({ applied: !!application });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ message: err.message, error: err.message });
   }
 };

@@ -3,15 +3,16 @@ import axios from 'axios'
 import { useParams } from 'react-router'
 import { useNavigate } from 'react-router'
 import AuthContext from '../Context/AuthContext'
+import { toast } from 'react-toastify'
 
 import Footer from '../Footer'
 import Navbar from '../Navbar'
 function SingleJob() {
     const [singleJob, setSingleJob] = useState([])
-    const [hasApplied, setHasApplied] = useState(false) 
+    const [hasApplied, setHasApplied] = useState(false)
     const { id } = useParams()
     const navigate = useNavigate()
-    
+
     useEffect(() => {
         const getdata = async () => {
             const data = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/jobs/${id}`)
@@ -22,7 +23,7 @@ function SingleJob() {
     }, [])
     const { user } = useContext(AuthContext)
 
-    
+
     useEffect(() => {
         const checkStatus = async () => {
             if (user?.email) {
@@ -31,24 +32,30 @@ function SingleJob() {
                     setHasApplied(res.data.applied);
                 } catch (err) {
                     console.error("Error checking application status", err);
+                    toast.error("Failed to fetch application status");
                 }
             }
         };
         checkStatus();
     }, [id, user]);
 
-    
+
     const goToListPage = () => {
         navigate("/jobs")
     }
 
     const deleteJob = async () => {
-        const jobDelete = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/jobs/${id}`)
-        console.log(jobDelete)
-        alert("Job deleted successfuly")
-        navigate("/jobs")
+        try {
+            const jobDelete = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/jobs/${id}`)
+            console.log(jobDelete)
+            toast.success("Job deleted successfully")
+            navigate("/jobs")
+        } catch (err) {
+            console.error("Error deleting job", err);
+            toast.error("Failed to delete job");
+        }
     }
-   
+
     return (
         <div>
             <Navbar />

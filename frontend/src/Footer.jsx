@@ -35,8 +35,8 @@ function Footer() {
         <a className="text-sm text-gray-400" href='/jobs'>
             Jobs
         </a>
-        <p className="text-sm text-gray-400">Application</p>
-        <p className="text-sm text-gray-400">Applicants</p>
+        <a className="text-sm text-gray-400" href='/account'>Profile</a>
+        <p className="text-sm text-gray-400" href='/applicants'>Applicants</p>
     </div>
 
     <div className="flex flex-col  text-center sm:text-left">

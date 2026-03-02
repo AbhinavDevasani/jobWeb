@@ -7,6 +7,7 @@ import { TextField, Button, Box, Typography, Paper, Grid } from "@mui/material";
 import { useNavigate, useParams } from "react-router";
 import Footer from "../Footer";
 import Navbar from '../Navbar';
+import { toast } from "react-toastify";
 function JobEdit() {
     const { id } = useParams()
     const navigate = useNavigate()
@@ -37,11 +38,12 @@ function JobEdit() {
                     values
                 );
                 console.log(response)
-                alert("Job updated successfully")
+                toast.success("Job updated successfully")
                 navigate("/jobs")
                 resetForm();
             } catch (err) {
                 console.log(err);
+                toast.error("Failed to update job");
             }
         },
     });
@@ -60,6 +62,7 @@ function JobEdit() {
                 });
             } catch (err) {
                 console.error("Error fetching job:", err);
+                toast.error("Error fetching job details");
             }
 
         };
@@ -70,7 +73,7 @@ function JobEdit() {
     const goToListPage = () => {
         navigate("/jobs")
     }
-    
+
     return (
         <div>
             <Navbar />

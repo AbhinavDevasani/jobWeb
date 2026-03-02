@@ -4,9 +4,11 @@ import * as Yup from "yup";
 import axios from "axios";
 import { TextField, Button, Box, Typography, Paper, Grid } from "@mui/material";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import Footer from "../Footer";
 import Navbar from '../Navbar';
 function JobForm() {
+    const navigate = useNavigate()
     const formik = useFormik({
         initialValues: {
             title: "",
@@ -31,17 +33,16 @@ function JobForm() {
                     values
                 );
                 console.log("Job created Successfully", response.data);
+                toast.success("Job created successfully");
                 resetForm();
+                navigate("/jobs");
             } catch (err) {
                 console.log(err);
+                toast.error("Failed to post job");
             }
         },
     });
-    const navigate = useNavigate()
-    const submittedJob = () => {
-        alert("Job created successfully")
-        navigate("/jobs")
-    }
+
     return (
         <div>
             <Navbar />
@@ -50,7 +51,7 @@ function JobForm() {
                 justifyContent="center"
                 alignItems="center"
                 flexDirection="column"
-                sx={{ mt: 5,  mb :4 }}
+                sx={{ mt: 5, mb: 4 }}
 
             >
                 <Typography variant="h4" fontWeight={700} gutterBottom>
@@ -165,11 +166,10 @@ function JobForm() {
                                     variant="contained"
                                     color="primary"
                                     sx={{ px: 4, py: 1 }}
-                                    onClick={() => submittedJob()}
                                 >
                                     Submit
                                 </Button>
-                            </Grid>                     
+                            </Grid>
                         </Grid>
                     </form>
                 </Paper>

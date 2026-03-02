@@ -143,7 +143,7 @@ function Navbar() {
 
 
                 <div
-                    className={`flex items-center gap-2 cursor-pointer px-3 py-2 rounded-lg transition ${isActive('/account') ? 'bg-blue-600 text-white' : 'text-gray-700'}`}
+                    className={`flex items-center gap-2 cursor-pointer px-3 py-2 rounded-lg transition`}
                     onClick={() => goToAccount()}
                 >
                     <svg
@@ -160,7 +160,7 @@ function Navbar() {
                             d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.25a8.25 8.25 0 0 1 15 0v.75H4.5v-.75Z"
                         />
                     </svg>
-                    <p className="hidden sm:block font-[600]">Account</p>
+                    <p className="hidden sm:block font-[600]">Profile</p>
                 </div>
             </nav>
         </div>
