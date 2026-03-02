@@ -1,11 +1,13 @@
 import express from "express";
 import { validateToken } from "../middleWare/tokenHandler.js";
+import uploadResume from "../middleWare/uploadResume.js";
 import {
   getProfile,
   updateProfile,
   addSkill,
   addExperience,
-  addEducation
+  addEducation,
+  uploadProfileResume
 } from "../controllers/profileController.js";
 
 const router3 = express.Router();
@@ -15,5 +17,6 @@ router3.put("/", validateToken, updateProfile);
 router3.post("/skill", validateToken, addSkill);
 router3.post("/experience", validateToken, addExperience);
 router3.post("/education", validateToken, addEducation);
+router3.post("/resume", validateToken, uploadResume.single("resume"), uploadProfileResume);
 
 export default router3;

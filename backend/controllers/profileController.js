@@ -118,3 +118,26 @@ export const addEducation = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
+export const uploadProfileResume = async (req, res) => {
+  try {
+    const resumeUrl = req.file?.path;
+
+    if (!resumeUrl) {
+      return res.status(400).json({ message: "Resume file is required" });
+    }
+
+    let profile = await Profile.findOne({ user: req.user._id });
+
+    if (!profile) {
+      profile = new Profile({ user: req.user._id });
+    }
+
+    profile.resume = resumeUrl;
+    await profile.save();
+
+    res.json({ message: "Resume uploaded successfully", resume: profile.resume });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
