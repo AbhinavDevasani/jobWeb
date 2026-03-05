@@ -14,7 +14,7 @@ import ProtectedRoute from './ProtectedRoute'
 import ApplyJob from './ApplyJobPage/ApplyJob'
 import Applicants from './Applicants/Applicants'
 import About from './AboutPage/About'
-
+import SingleApplicant from './SingleApplicant/SingleApplicant'
 function App() {
 
   return (
@@ -26,6 +26,7 @@ function App() {
         <Route path="/jobs/new" element={<ProtectedRoute onlyRahul={true}><JobForm></JobForm></ProtectedRoute>}></Route>
         <Route path="/jobs" element={<ProtectedRoute><JobList></JobList></ProtectedRoute>}></Route>
         <Route path="/home" element={<ProtectedRoute><JobHome></JobHome></ProtectedRoute>}></Route>
+        <Route path="/applicant/:id" element={<ProtectedRoute onlyRahul={true}><SingleApplicant></SingleApplicant></ProtectedRoute>}></Route>
         <Route path="/jobEdit/:id" element={<ProtectedRoute onlyRahul={true}><JobEdit></JobEdit></ProtectedRoute>}></Route>
         <Route path="/jobs/:id" element={<ProtectedRoute><SingleJob></SingleJob></ProtectedRoute>}></Route>
         <Route path="/about" element={<ProtectedRoute><About></About></ProtectedRoute>}></Route>

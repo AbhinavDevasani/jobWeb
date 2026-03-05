@@ -2,7 +2,6 @@ import Profile from "../model/profileModel.js";
 export const getProfile = async (req, res) => {
   try {
     let profile = await Profile.findOne({ user: req.user._id }).populate("user", "username email");
-    console.log("req.user:", req.user);
     if (!profile) {
       profile = await Profile.create({ user: req.user._id });
     }

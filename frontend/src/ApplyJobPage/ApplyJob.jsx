@@ -87,12 +87,17 @@ function ApplyJob() {
                 } else if (profileResume) {
                     formData.append("profileResume", profileResume);
                 }
-
+                const token = Cookies.get("jwt_token");
                 const response = await axios.post(
                     `${import.meta.env.VITE_BACKEND_URL}/api/users/jobs/applyJob`,
-                    formData
+                    formData,
+                    {
+                        headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "multipart/form-data",
+                        },
+                    }
                 );
-
                 console.log("Job Applied Successfully", response.data);
                 toast.success("Application submitted successfully");
                 resetForm();

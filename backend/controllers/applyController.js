@@ -4,11 +4,11 @@ import Profile from "../model/profileModel.js";
 export const applyJob = async (req, res) => {
   try {
     const { jobId, name, number, email, description, profileResume } = req.body;
-    const resume = req.file?.path || profileResume;
+    let resume = req.file?.path || profileResume || profile.resume;
     if (!resume) {
-      return res.status(400).json({ message: "Resume is required" });
+        return res.status(400).json({ message: "Resume is required" });
     }
-
+      resume = resume.replace(/\\/g, "/");
     const jobExists = await Job.findById(jobId);
     if (!jobExists) {
       return res.status(404).json({ message: "Job not found" });
@@ -66,5 +66,21 @@ export const checkApplication = async (req, res) => {
     res.json({ applied: !!application });
   } catch (err) {
     res.status(500).json({ message: err.message, error: err.message });
+  }
+};
+export const getSingleApplicant = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const data = await Application.findById(id)
+      .populate("jobId")
+      .populate("profileId");
+
+    res.status(200).json({
+      Result: data
+    });
+
+  } catch (err) {
+    res.status(400).send(err);
   }
 };

@@ -104,7 +104,7 @@ function SingleJob() {
                             </div>
                             {user?.email !== "rahul@gmail.com" &&
                                 <button
-                                    className={`${hasApplied ? 'bg-green-600 cursor-not-allowed' : 'bg-blue-500 cursor-pointer'} p-1 rounded-md mt-2 text-white px-4`}
+                                    className={`${hasApplied ? 'bg-gray-600 cursor-not-allowed' : 'bg-blue-500 cursor-pointer'} p-1 rounded-md mt-2 text-white px-4`}
                                     onClick={() => !hasApplied && navigate(`/applyJob/${id}`)}
                                     disabled={hasApplied}
                                 >

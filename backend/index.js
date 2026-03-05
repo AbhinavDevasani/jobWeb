@@ -8,13 +8,13 @@ import router from "./routes/userRoute.js";
 import errorHandler from "./middleWare/errorHandler.js";
 import router2 from "./routes/applyRoute.js";
 import router3 from "./routes/profileRoute.js";
+
 const app = express();
 dotenv.config();
 app.use(
   cors({
-    origin: ["https://jobweb-1.onrender.com", "http://localhost:5173"], // allow frontend origin
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"], // include content-type
+    origin: ["http://localhost:5173", "https://jobweb-1.onrender.com"],
+    credentials: true
   })
 );
 
