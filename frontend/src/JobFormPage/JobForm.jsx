@@ -58,7 +58,7 @@ function JobForm() {
                     Post a New Job
                 </Typography>
 
-                <Paper elevation={3} sx={{ p: 4, width: { xs: "60%", sm: "60%", md: "60%", }, }}>
+                <Paper elevation={3} sx={{ p: { xs: 2, md: 4 }, width: { xs: "95%", sm: "80%", md: "60%", }, }}>
                     <form onSubmit={formik.handleSubmit}>
                         <Grid container spacing={3} direction="column">
                             {/* Job Title */}
@@ -165,7 +165,7 @@ function JobForm() {
                                     type="submit"
                                     variant="contained"
                                     color="primary"
-                                    sx={{ px: 4, py: 1 }}
+                                    sx={{ px: { xs: 2, md: 4 }, py: 1, width: { xs: "100%", sm: "auto" } }}
                                 >
                                     Submit
                                 </Button>

@@ -59,7 +59,7 @@ function SingleJob() {
     return (
         <div>
             <Navbar />
-            <div className="max-w-4xl mx-auto mt-10 space-y-6 mb-4">
+            <div className="max-w-4xl mx-auto mt-10 space-y-6 px-4 mb-4">
                 <h2 className="text-[30px] font-semibold text-gray-800 mb-4">Job Overview</h2>
                 <div className='flex justify-between'>
                     <div className='flex' onClick={() => goToListPage()}>
@@ -85,8 +85,8 @@ function SingleJob() {
                             </svg>
                             <p className='text-[18px] ml-2 font-[500]'>{singleJob.company}</p>
                         </div>
-                        <p className='border-1 sm:w-[5vw] text-center rounded-lg text-black text-[14px] font-[500] border-gray-300 w-[19vw]'> {singleJob.jobType}</p>
-                        <div className='flex gap-10 mt-3'>
+                        <p className='border-1 text-center rounded-lg px-2 py-1 text-black text-[14px] font-[500] border-gray-300 w-fit'> {singleJob.jobType}</p>
+                        <div className='flex flex-col sm:flex-row gap-6 sm:gap-10 mt-6'>
                             <div>
                                 <p className='ml-6'>Location</p>
                                 <div className="flex">
@@ -115,9 +115,9 @@ function SingleJob() {
 
                     </div>
                 </div>
-                <div className='flex gap-3 sm:px-[0px] px-[20px]'>
+                <div className='flex flex-col sm:flex-row gap-4'>
                     {/* Job Description Card */}
-                    <div className="bg-white shadow-md rounded-lg p-6 sm:w-[30vw] w-[40vw]">
+                    <div className="bg-white shadow-md rounded-lg p-6 w-full sm:w-1/2">
                         <div className='flex'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="sm:size-6 size-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
@@ -131,7 +131,7 @@ function SingleJob() {
                         </p>
                     </div>
                     {/*Posted At card */}
-                    <div className="bg-white shadow-md rounded-lg p-6 sm:w-[30vw] w-[40vw] ">
+                    <div className="bg-white shadow-md rounded-lg p-6 w-full sm:w-1/2">
                         <div className='flex'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="sm:size-6 size-4 mt-[3px]">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
@@ -150,7 +150,7 @@ function SingleJob() {
 
                     </div>
                 </div>
-                <div className="bg-white shadow-md rounded-lg p-6 sm:w-[30vw] w-[70vw] ml-5 sm:ml-[0px]">
+                <div className="bg-white shadow-md rounded-lg p-6 w-full">
                     <h2 className="text-xl font-semibold text-gray-800 mb-4">
                         Contact Information
                     </h2>

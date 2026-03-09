@@ -93,8 +93,8 @@ function ApplyJob() {
                     formData,
                     {
                         headers: {
-                        Authorization: `Bearer ${token}`,
-                        "Content-Type": "multipart/form-data",
+                            Authorization: `Bearer ${token}`,
+                            "Content-Type": "multipart/form-data",
                         },
                     }
                 );
@@ -124,7 +124,7 @@ function ApplyJob() {
                     Apply for the Job
                 </Typography>
 
-                <Paper elevation={3} sx={{ p: 4, width: { xs: "60%", sm: "60%", md: "30%", }, }}>
+                <Paper elevation={3} sx={{ p: { xs: 2, md: 4 }, width: { xs: "95%", sm: "80%", md: "50%", lg: "40%" }, }}>
                     <form onSubmit={formik.handleSubmit}>
                         <Grid container spacing={3} direction="column">
                             {/* Name */}
@@ -296,7 +296,7 @@ function ApplyJob() {
                                     type="submit"
                                     variant="contained"
                                     color="primary"
-                                    sx={{ px: 4, py: 1 }}
+                                    sx={{ px: { xs: 2, md: 4 }, py: 1, width: { xs: "100%", sm: "auto" } }}
 
                                 >
                                     Submit

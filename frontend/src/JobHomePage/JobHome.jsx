@@ -36,24 +36,26 @@ function JobHome() {
   return (
     <div>
       <Navbar />
-      <div className='flex justify-between'>
-      <div className="flex flex-col justify-center h-[80vh]  px-4 bg-white text-center items-center">
-        <p className='text-blue-600 font-semibold'>#1 Job Portal</p>
-        <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-          Find Your Dream{" "}
-          <span className="text-indigo-600">Job</span>
-        </h1>
+      <div className='flex flex-col md:flex-row justify-between items-center w-full px-4 md:px-14 md:min-h-[80vh] bg-white'>
+        <div className="flex flex-col justify-center text-center md:text-left items-center md:items-start w-full md:w-1/2 py-10 md:py-0">
+          <p className='text-blue-600 font-semibold'>#1 Job Portal</p>
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+            Find Your Dream{" "}
+            <span className="text-indigo-600">Job</span>
+          </h1>
 
 
-        <p className="text-lg text-gray-600 max-w-2xl">
-          Discover thousands of part-time and full time opportunities across India.
-          Secure your future with trusted employment.
-        </p>
-        <button onClick={goToJobs} className="bg-blue-600 text-white p-4 rounded-md hover:bg-blue-700 transition mt-4 w-fit">Explore Jobs</button>
+          <p className="text-lg text-gray-600 max-w-2xl">
+            Discover thousands of part-time and full time opportunities across India.
+            Secure your future with trusted employment.
+          </p>
+          <button onClick={goToJobs} className="bg-blue-600 text-white p-4 rounded-md hover:bg-blue-700 transition mt-4 w-fit">Explore Jobs</button>
+        </div>
+        <div className="w-full md:w-1/2 flex justify-center py-10 md:py-0 hidden md:flex">
+          <img src="https://www.sapphiresolutions.net/images/job_new_portfolio/job_portal_about.svg" className='w-full max-w-md object-contain' />
+        </div>
       </div>
-      <img src="https://www.sapphiresolutions.net/images/job_new_portfolio/job_portal_about.svg" className='px-14'/>
-      </div>
-      <img src="https://res.cloudinary.com/dudjdf428/image/upload/v1772000989/ChatGPT_Image_Feb_24_2026_03_13_12_PM_1_xw0ume.png" className='h-[50vh]' />
+      <img src="https://res.cloudinary.com/dudjdf428/image/upload/v1772000989/ChatGPT_Image_Feb_24_2026_03_13_12_PM_1_xw0ume.png" className='w-full max-h-[50vh] object-cover' />
       <div className="w-full bg-blue-500 py-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-white text-2xl md:text-3xl font-medium mb-12">
@@ -61,7 +63,7 @@ function JobHome() {
           </h2>
 
 
-          <div className="flex flex-wrap items-center justify-center gap-12 opacity-90">
+          <div className="flex items-center justify-center gap-6 md:gap-12 flex-wrap md:flex-nowrap opacity-90">
 
             <SiGodaddy className="h-8 object-contain brightness-0 invert text-[35px]" />
 
@@ -96,7 +98,7 @@ function JobHome() {
         ) : (
           <div className='flex flex-wrap gap-6 justify-center'>
             {latestJobs.map((item, id) => (
-              <div key={id} className='bg-white p-6 rounded-lg shadow-md border border-gray-200 sm:w-[45%] w-[90%]'>
+              <div key={id} className='bg-white p-6 rounded-lg shadow-md border border-gray-200 w-full md:w-[48%] xl:w-[45%]'>
                 <div className="flex justify-between items-start mb-2">
                   <div className="flex items-center justify-between w-full">
                     <p className='sm:text-xl font-semibold'>{item.title}</p>
@@ -143,13 +145,13 @@ function JobHome() {
           </button>
         </div>
       </div>
-      <div className="w-full h-[60vh] flex flex-col items-center justify-center 
+      <div className="w-full min-h-[60vh] py-16 flex flex-col items-center justify-center 
         bg-gradient-to-b from-blue-600 to-blue-500 text-center text-white px-4 relative overflow-hidden">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight mb-8">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-semibold leading-tight mb-8">
           Discover Your Next Career <br />
           Move with Ease
         </h1>
-        <div className="flex gap-4 relative z-10">
+        <div className="flex flex-col sm:flex-row gap-4 relative z-10 w-full sm:w-auto px-4 sm:px-0">
           <button className="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium shadow-md hover:shadow-lg transition" onClick={goToJobs}>
             Start job search
           </button>

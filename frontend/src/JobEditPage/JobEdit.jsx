@@ -88,7 +88,7 @@ function JobEdit() {
                     Edit the Job
                 </Typography>
 
-                <Paper elevation={3} sx={{ p: 4, width: { xs: "60%", sm: "60%", md: "60%", }, }}>
+                <Paper elevation={3} sx={{ p: { xs: 2, md: 4 }, width: { xs: "95%", sm: "80%", md: "60%", }, }}>
                     <form onSubmit={formik.handleSubmit}>
                         <Grid container spacing={3} direction="column">
                             {/* Job Title */}
@@ -188,14 +188,14 @@ function JobEdit() {
                                     helperText={formik.touched.jobType && formik.errors.jobType}
                                 />
                             </Grid>
-                            <div className="flex">
+                            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
                                 {/* Submit Button */}
                                 <Grid size={12} textAlign="center">
                                     <Button
 
                                         variant="contained"
                                         color="primary"
-                                        sx={{ px: { md: 4 }, py: { md: 1 }, fontSize: { xs: "8px", md: "1rem" }, }}
+                                        sx={{ px: { xs: 2, md: 4 }, py: 1, fontSize: { xs: "14px", md: "1rem" }, width: { xs: "100%", sm: "auto" } }}
                                         onClick={() => goToListPage()}
                                     >
                                         Cancel Changes
@@ -207,7 +207,7 @@ function JobEdit() {
 
                                         variant="contained"
                                         color="primary"
-                                        sx={{ px: { md: 4 }, py: 1, fontSize: { xs: "10px", md: "1rem" }, }}
+                                        sx={{ px: { xs: 2, md: 4 }, py: 1, fontSize: { xs: "14px", md: "1rem" }, width: { xs: "100%", sm: "auto" } }}
                                     >
                                         Submit
                                     </Button>

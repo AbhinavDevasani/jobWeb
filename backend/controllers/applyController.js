@@ -4,19 +4,26 @@ import Profile from "../model/profileModel.js";
 export const applyJob = async (req, res) => {
   try {
     const { jobId, name, number, email, description, profileResume } = req.body;
-    let resume = req.file?.path || profileResume || profile.resume;
-    if (!resume) {
-        return res.status(400).json({ message: "Resume is required" });
-    }
-      resume = resume.replace(/\\/g, "/");
+
     const jobExists = await Job.findById(jobId);
     if (!jobExists) {
       return res.status(404).json({ message: "Job not found" });
     }
+
     const profile = await Profile.findOne({ user: req.user._id });
     if (!profile) {
       return res.status(404).json({ message: "Profile not found" });
     }
+
+    let resume = req.file?.path || profileResume || profile.resume;
+    if (!resume) {
+      return res.status(400).json({ message: "Resume is required" });
+    }
+
+    if (typeof resume === 'string') {
+      resume = resume.replace(/\\/g, "/");
+    }
+
     const existingApplication = await Application.findOne({ jobId, email });
     if (existingApplication) {
       return res

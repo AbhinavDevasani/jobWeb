@@ -65,8 +65,8 @@ const AuthPage = ({ initialMode = "login" }) => {
     };
 
     return (
-        <div className="min-h-screen flex bg-[#f5f9fc] ">
-            <div className="w-1/2 flex items-center justify-center px-20">
+        <div className="min-h-screen flex flex-col lg:flex-row bg-[#f5f9fc] ">
+            <div className="w-full lg:w-1/2 flex flex-col items-center justify-center px-6 sm:px-12 md:px-20 py-10 lg:py-0 min-h-screen lg:min-h-0">
 
                 <div className="w-full max-w-md">
 
@@ -212,7 +212,7 @@ const AuthPage = ({ initialMode = "login" }) => {
 
                 </div>
             </div>
-            <div className="w-1/2 bg-white flex items-center justify-center">
+            <div className="hidden lg:flex lg:w-1/2 bg-white items-center justify-center">
                 <img
                     src="https://img.freepik.com/free-vector/job-interview-conversation_74855-7566.jpg"
                     alt="Job Portal"
